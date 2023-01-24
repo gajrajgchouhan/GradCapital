@@ -40,3 +40,15 @@ exports.getOneService = async (req, res, next) => {
             .json({ role: isAdmin ? "admin" : member.role, ledger });
     }
 };
+
+exports.createService = async (req, res, next) => {
+    const userId = res.locals.id;
+    const { name, description } = req.body;
+    const ledger = await ledgerModel.create({
+        name,
+        description,
+        createdBy: userId,
+        users: [],
+    });
+    return res.status(200).json(ledger);
+};

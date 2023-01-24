@@ -23,3 +23,11 @@ exports.jwtMiddleware = (req, res, next) => {
         });
     });
 };
+
+exports.checkRole = (role) => (req, res, next) => {
+    if (res.locals.user.role !== role) {
+        res.status(403).json({ message: "Forbidden" });
+        return;
+    }
+    next();
+};

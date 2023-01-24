@@ -10,4 +10,7 @@ const controller = require("./ledger.controller");
 module.exports = (app) => {
     app.post(`${prefix}/getAll`, jwtMiddleware, controller.getAll);
     app.post(`${prefix}/getOne`, jwtMiddleware, controller.getOne);
+    app.post(`${prefix}/create`, jwtMiddleware, controller.create);
+    // TODO
+    // filters, pdf generation
 };

@@ -27,6 +27,11 @@ const ledgerSchema = new Schema({
         required: true,
         ref: "User",
     },
+    currentBalance: {
+        type: Number,
+        required: true,
+        default: 0,
+    },
 });
 
 module.exports = mongoose.model("Ledger", ledgerSchema);
