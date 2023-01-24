@@ -13,4 +13,7 @@ module.exports = (app) => {
     app.post(`${prefix}/create`, jwtMiddleware, controller.create);
     // TODO
     // filters, pdf generation
+    // app.post(`${prefix}/category`, jwtMiddleware, controller.category);
+    // app.post(`${prefix}/people`, jwtMiddleware, controller.people);
+    // app.post(`${prefix}/pdf`, jwtMiddleware, controller.pdf);
 };

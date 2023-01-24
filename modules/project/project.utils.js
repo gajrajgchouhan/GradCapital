@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const userModel = require("../../models/user");
+const ledgerModel = require("../../models/ledger");
 
 exports.jwtMiddleware = (req, res, next) => {
     const token = req.headers.authorization;
@@ -24,10 +25,32 @@ exports.jwtMiddleware = (req, res, next) => {
     });
 };
 
-exports.checkRole = (role) => (req, res, next) => {
-    if (res.locals.user.role !== role) {
+const findRole = async (ledgerId, userId) => {
+    const ledger = await ledgerModel.findById(ledgerId).exec();
+    const isUserAdmin = ledger.createdBy.toString() == userId;
+    if (isUserAdmin) {
+        return "admin";
+    } else {
+        const userObj = ledger.users.find((user) => user.id == userId);
+        if (userObj) {
+            return userObj.role;
+        } else {
+            return null;
+        }
+    }
+};
+
+/**
+ *
+ * @param {"admin"|"spender"|"stakeholder"} role
+ * @returns
+ */
+exports.checkRoleMiddleware = (role) => async (req, res, next) => {
+    const { ledgerId } = req.params;
+    const currRole = await findRole(ledgerId, res.locals.id);
+    // possible role -> admin,spender,stakeholder
+    if (currRole === null || currRole !== role) {
         res.status(403).json({ message: "Forbidden" });
         return;
-    }
-    next();
+    } else next();
 };
