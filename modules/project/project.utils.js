@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const userModel = require("../../models/user");
 
 exports.jwtMiddleware = (req, res, next) => {
     const token = req.headers.authorization;
@@ -11,7 +12,14 @@ exports.jwtMiddleware = (req, res, next) => {
             res.status(401).json({ message: "Failed to authenticate token" });
             return;
         }
-        console.log({ decoded }); // TODO
-        next();
+        userModel.findById(decoded.id).then((user) => {
+            if (!user) {
+                res.status(401).json({ message: "User not found" });
+                return;
+            } else {
+                res.locals = { user, id: user._id };
+                next();
+            }
+        });
     });
 };

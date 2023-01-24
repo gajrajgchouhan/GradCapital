@@ -37,21 +37,19 @@ const transactionSchema = new Schema({
         required: true,
     },
     createdBy: {
-        type: String,
+        type: Schema.Types.ObjectId,
         required: true,
         ref: "User",
     },
     approvedBy: [
         {
-            type: String,
-            required: false,
+            type: Schema.Types.ObjectId,
             ref: "User",
         },
     ],
     comments: [
         {
-            type: String,
-            required: false,
+            type: Schema.Types.ObjectId,
             ref: "Comment",
         },
     ],
