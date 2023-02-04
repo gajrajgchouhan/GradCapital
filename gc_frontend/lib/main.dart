@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gc_frontend/screens/ledger/ledgers.dart';
-import 'package:gc_frontend/screens/ledger/spendings.dart';
-import 'package:gc_frontend/screens/authenticate/sign_up.dart';
+// import 'package:gc_frontend/screens/authenticate/sign_up.dart';
 import 'package:gc_frontend/screens/authenticate/sign_in.dart';
 
 void main() => runApp(const MyApp());
@@ -31,14 +30,13 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 1;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static List<Widget> _widgetOptions = <Widget>[
-    Text(
+  static final List<Widget> _widgetOptions = <Widget>[
+    const Text(
       'Index 1: Business',
       style: optionStyle,
     ),
-    // LedgerPage(title: 'Ledger Groups'),
-    SpendingsPage(),
-    SignIn()
+    const LedgerPage(title: 'Ledger Groups'),
+    const SignIn()
   ];
 
   void _onItemTapped(int index) {

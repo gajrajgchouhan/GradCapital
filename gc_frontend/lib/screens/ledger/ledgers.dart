@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:gc_frontend/screens/ledger/spendings.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LedgerPage extends StatefulWidget {
@@ -85,7 +85,12 @@ class _LedgerPageState extends State<LedgerPage> {
                           children: <Widget>[
                             InkWell(
                               onTap: () {
-                                
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const SpendingsPage()),
+                                );
                                 // Navigator.push(context, )
                               },
                               child: Container(
@@ -96,62 +101,90 @@ class _LedgerPageState extends State<LedgerPage> {
                                   ),
                                   child: SizedBox(
                                       height: 80,
-                                      width:
-                                          MediaQuery.of(context).size.width * 0.95,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.95,
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
                                         children: <Widget>[
                                           ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(25.0),
                                             child: Image.network(
-                                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7b_OOEAaD8TJ7pFEhv35cnkFrtjMVgA-wlg&usqp=CAU",
+                                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgIWwryUUArHF_DWOh2Xxkg_X96SC-BbMiWp1DrNTYgpBH7AJ3G8q_w_XjKdAJSLh4pW0&usqp=CAU",
                                               height: 50.0,
                                             ),
                                           ),
-                                          Column(children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 15, top: 20),
-                                              child: Text("Development Fund",
-                                                  style: GoogleFonts.montserrat(
-                                                    color: const Color.fromRGBO(
-                                                        54, 54, 54, 1),
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: 16,
-                                                  ),
-                                                  textAlign: TextAlign.left),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(left: 15),
-                                              child: Text("Silver Springs Colony",
-                                                  style: GoogleFonts.montserrat(
-                                                    color: const Color.fromRGBO(
-                                                        54, 54, 54, 1),
-                                                    fontWeight: FontWeight.w300,
-                                                    fontSize: 15,
-                                                  ),
-                                                  textAlign: TextAlign.left),
-                                            ),
-                                          ]),
+                                          Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 15, top: 20),
+                                                  child: Text(
+                                                      "Fresher's Party 22",
+                                                      style: GoogleFonts
+                                                          .montserrat(
+                                                        color: const Color
+                                                                .fromRGBO(
+                                                            54, 54, 54, 1),
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize: 16,
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.left),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 15),
+                                                  child: Text("B Tech 2021",
+                                                      style: GoogleFonts
+                                                          .montserrat(
+                                                        color: const Color
+                                                                .fromRGBO(
+                                                            54, 54, 54, 1),
+                                                        fontWeight:
+                                                            FontWeight.w300,
+                                                        fontSize: 15,
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.left),
+                                                ),
+                                              ]),
                                           Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                Text("Rs. 30000", style:  GoogleFonts.montserrat(
-                                                  color: Color.fromARGB(255, 244, 92, 92),
-                                                  fontSize: 16
-                                                )),
-                                                Text("Rs. 20000", style:  GoogleFonts.montserrat(
-                                                  color: Color.fromARGB(255, 138, 207, 84),
-                                                  fontSize: 16
-                                                )
-                                                )]
-                                            ),
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text("Rs. 49,700",
+                                                      style: GoogleFonts
+                                                          .montserrat(
+                                                              color: const Color
+                                                                      .fromARGB(
+                                                                  255,
+                                                                  244,
+                                                                  92,
+                                                                  92),
+                                                              fontSize: 16)),
+                                                  Text("Rs. 42,500",
+                                                      style: GoogleFonts
+                                                          .montserrat(
+                                                              color: const Color
+                                                                      .fromARGB(
+                                                                  255,
+                                                                  138,
+                                                                  207,
+                                                                  84),
+                                                              fontSize: 16))
+                                                ]),
                                           )
                                         ],
                                       ))),
