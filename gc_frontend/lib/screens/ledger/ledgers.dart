@@ -24,7 +24,7 @@ class _LedgerPageState extends State<LedgerPage> {
       // appBar: AppBar(
       //   backgroundColor: Colors.white,
       // title: Text(widget.title,
-      //     style: const TextStyle(
+      //     style: const GoogleFonts.montserrat(
       //         color: Color.fromRGBO(50, 63, 75, 1),
       //         fontWeight: FontWeight.bold)),
       // ),

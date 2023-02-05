@@ -61,32 +61,38 @@ class Transcation extends StatelessWidget {
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       )),
-                  const Icon(
-                    Icons.food_bank,
-                    color: Colors.yellow,
-                    size: 20,
-                  )
+                  Padding(
+                      padding: const EdgeInsets.only(right: 15),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(7.0),
+                        child: Image.network(
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGL98ush_JVAtrRt7HMg-uf0tD51kRZBYG0A&usqp=CAU",
+                          height: 45.0,
+                        ),
+                      )),
                 ],
               ),
               const SizedBox(
                 height: 15,
               ),
               ListView.separated(
-                itemBuilder: (context, index) => Row(
-                  children: [
-                    Text(
-                      "${details[index]["first"]!} :  ",
-                      style: GoogleFonts.montserrat(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(details[index]["second"]!,
-                        style: GoogleFonts.montserrat(
-                          fontSize: 16,
-                        ))
-                  ],
-                ),
+                itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Row(
+                      children: [
+                        Text(
+                          "${details[index]["first"]!} :  ",
+                          style: GoogleFonts.montserrat(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(details[index]["second"]!,
+                            style: GoogleFonts.montserrat(
+                              fontSize: 16,
+                            ))
+                      ],
+                    )),
                 separatorBuilder: (context, index) => const Divider(
                   color: Color.fromRGBO(131, 183, 255, 1),
                   height: 2,
@@ -114,42 +120,90 @@ class Transcation extends StatelessWidget {
                 shrinkWrap: true,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
-                  crossAxisSpacing: 5.0,
-                  mainAxisSpacing: 5.0,
+                  crossAxisSpacing: 15.0,
+                  mainAxisSpacing: 15.0,
                 ),
                 children: [
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Image.asset(
-                      "assets/images/food.jpg",
-                      fit: BoxFit.cover,
-                    ),
+                    child: Image.asset("assets/images/bill.jpg",
+                        // fit: BoxFit.cover,
+                        height: 50),
                   ),
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.transparent,
-                    ),
-                    child: Column(
-                      children: [
-                        Icon(
-                          Icons.done,
-                          color: Color.fromRGBO(179, 179, 179, 1),
-                          size: 12,
-                        ),
-                        Text(
-                          "PROOF OF PAYMENT",
-                          style: GoogleFonts.montserrat(
-                            color: Color.fromRGBO(179, 179, 179, 1),
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(),
+                  Card(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      elevation: 8,
+                      child: Container(
+                        padding: const EdgeInsets.all(20),
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                  padding: const EdgeInsets.all(4),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      border: Border.all(
+                                        color: const Color.fromRGBO(
+                                            113, 113, 113, 1),
+                                        width: 2,
+                                      )),
+                                  child: const Icon(
+                                    Icons.check,
+                                    color: Color.fromRGBO(113, 113, 113, 1),
+                                    size: 22.0,
+                                  )),
+                              Padding(
+                                  padding: const EdgeInsets.all(15),
+                                  child: Text("PROOF OF PAYMENT",
+                                      style: GoogleFonts.montserrat(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w700,
+                                          color: const Color.fromRGBO(
+                                              179, 179, 179, 1))))
+                            ]),
+                      )),
+                  Card(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      elevation: 8,
+                      child: Container(
+                        padding: const EdgeInsets.all(20),
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                  padding: const EdgeInsets.all(4),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      border: Border.all(
+                                        color: const Color.fromRGBO(
+                                            113, 113, 113, 1),
+                                        width: 2,
+                                      )),
+                                  child: const Icon(
+                                    Icons.image,
+                                    color: Color.fromRGBO(113, 113, 113, 1),
+                                    size: 22.0,
+                                  )),
+                              Padding(
+                                  padding: const EdgeInsets.all(15),
+                                  child: Text("PICTURES",
+                                      style: GoogleFonts.montserrat(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w700,
+                                          color: const Color.fromRGBO(
+                                              179, 179, 179, 1))))
+                            ]),
+                      )),
+                  // Padding(
+                  //     padding: const EdgeInsets.only(left: 0),
+                  // child:
                   Badge(
                     alignment: AlignmentDirectional.topEnd,
                     label: Text(
@@ -160,32 +214,80 @@ class Transcation extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    backgroundColor: Color.fromRGBO(255, 64, 64, 1),
+                    backgroundColor: const Color.fromRGBO(255, 64, 64, 1),
                     child: Column(children: [
-                      Icon(Icons.comment,
-                          color: Color.fromRGBO(113, 113, 113, 1)),
-                      SizedBox(height: 5),
+                      const Icon(Icons.comment,
+                          size: 30, color: Color.fromRGBO(113, 113, 113, 1)),
+                      const SizedBox(height: 5),
                       Text(
                         "COMMENTS",
                         style: GoogleFonts.montserrat(
-                          color: Color.fromRGBO(113, 113, 113, 1),
+                          color: const Color.fromRGBO(113, 113, 113, 1),
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
                         ),
                       )
                     ]),
                   ),
-                  Container(),
-                  Container(),
+                  Badge(
+                    alignment: AlignmentDirectional.topEnd,
+                    label: Text(
+                      "12",
+                      style: GoogleFonts.montserrat(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    backgroundColor: const Color.fromRGBO(255, 64, 64, 1),
+                    child: Column(children: [
+                      const Icon(Icons.flag_outlined,
+                          size: 30, color: Color.fromRGBO(113, 113, 113, 1)),
+                      const SizedBox(height: 5),
+                      Text(
+                        "RED FLAGS",
+                        style: GoogleFonts.montserrat(
+                          color: const Color.fromRGBO(113, 113, 113, 1),
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ]),
+                  ),
+                  // Badge(
+                  //   alignment: AlignmentDirectional.topEnd,
+                  //   label: Text(
+                  //     "12",
+                  //     style: GoogleFonts.montserrat(
+                  //       color: Colors.white,
+                  //       fontSize: 12,
+                  //       fontWeight: FontWeight.bold,
+                  //     ),
+                  //   ),
+                  //   backgroundColor: const Color.fromRGBO(255, 64, 64, 1),
+                  //   child:
+                  Column(children: [
+                    const Icon(Icons.circle_outlined,
+                        size: 30, color: Color.fromRGBO(113, 113, 113, 1)),
+                    const SizedBox(height: 5),
+                    Text(
+                      "AUTHENTICITY\n SCORE",
+                      style: GoogleFonts.montserrat(
+                        color: const Color.fromRGBO(113, 113, 113, 1),
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )
+                  ]),
                 ],
               ),
-              const SizedBox(
-                height: 15,
-              ),
+              // const SizedBox(
+              //   height: 15,
+              // ),
               Container(
-                padding: const EdgeInsets.all(20),
-                margin: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
+                padding: const EdgeInsets.all(10),
+                // margin: const EdgeInsets.all(5),
+                decoration: const BoxDecoration(
                   color: Color.fromARGB(213, 255, 255, 255),
                   borderRadius: BorderRadius.vertical(
                     top: Radius.circular(20),
@@ -198,7 +300,7 @@ class Transcation extends StatelessWidget {
                     Text(
                       "Suspicious bill identified by AI",
                       style: GoogleFonts.montserrat(
-                        color: Color.fromRGBO(244, 106, 92, 1),
+                        color: const Color.fromRGBO(244, 106, 92, 1),
                         fontSize: 16,
                         fontStyle: FontStyle.italic,
                       ),
@@ -209,18 +311,18 @@ class Transcation extends StatelessWidget {
                     Text(
                       "LEARN MORE",
                       style: GoogleFonts.montserrat(
-                        color: Color.fromRGBO(66, 136, 233, 1),
+                        color: const Color.fromRGBO(66, 136, 233, 1),
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Divider(
+                    const Divider(
                       color: Color.fromRGBO(217, 217, 217, 1),
                       height: 5,
                     ),
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.flag_rounded,
                           color: Color.fromRGBO(244, 106, 92, 1),
                         ),
@@ -231,27 +333,30 @@ class Transcation extends StatelessWidget {
                           text: TextSpan(
                               text: "Flagged by",
                               style: GoogleFonts.montserrat(
-                                color: Color.fromRGBO(113, 113, 113, 1),
+                                color: const Color.fromRGBO(113, 113, 113, 1),
                                 fontStyle: FontStyle.italic,
                               ),
                               children: [
                                 TextSpan(
                                     text: "Vatsal Hooda",
                                     style: GoogleFonts.montserrat(
-                                      color: Color.fromRGBO(113, 113, 113, 1),
+                                      color: const Color.fromRGBO(
+                                          113, 113, 113, 1),
                                       fontWeight: FontWeight.bold,
                                       fontStyle: FontStyle.italic,
                                     )),
                                 TextSpan(
                                     text: "and",
                                     style: GoogleFonts.montserrat(
-                                      color: Color.fromRGBO(113, 113, 113, 1),
+                                      color: const Color.fromRGBO(
+                                          113, 113, 113, 1),
                                       fontStyle: FontStyle.italic,
                                     )),
                                 TextSpan(
                                     text: "11 others",
                                     style: GoogleFonts.montserrat(
-                                      color: Color.fromRGBO(113, 113, 113, 1),
+                                      color: const Color.fromRGBO(
+                                          113, 113, 113, 1),
                                       fontWeight: FontWeight.bold,
                                       fontStyle: FontStyle.italic,
                                     ))
