@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gc_frontend/read_json.dart';
 import 'package:gc_frontend/screens/ledger/spendings.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -12,6 +13,11 @@ class LedgerPage extends StatefulWidget {
 }
 
 class _LedgerPageState extends State<LedgerPage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,126 +77,99 @@ class _LedgerPageState extends State<LedgerPage> {
                           fontSize: 32,
                         )))),
             const SizedBox(height: 10),
-            Card(
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                ),
-                elevation: 8,
-                color: const Color.fromRGBO(240, 240, 240, 1),
-                child: Expanded(
-                  child: SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: Column(
-                          // mainAxisAlignment: MainAxisAlignment.start,
+            FutureBuilder(
+              future: readJson('assets/data/ledgers.json'),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return const CircularProgressIndicator();
+                }
+                var ledgers = snapshot.data as List;
+                return Column(
+                    // mainAxisAlignment: MainAxisAlignment.start,
+                    children: ledgers.map((ledger) {
+                  return Container(
+                    margin: const EdgeInsets.only(top: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: Colors.white,
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SpendingsPage()),
+                        );
+                      },
+                      child: SizedBox(
+                        height: 80,
+                        width: MediaQuery.of(context).size.width * 0.95,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
-                            InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const SpendingsPage()),
-                                );
-                                // Navigator.push(context, )
-                              },
-                              child: Container(
-                                  margin: const EdgeInsets.only(top: 10),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                    color: Colors.white,
-                                  ),
-                                  child: SizedBox(
-                                      height: 80,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.95,
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        children: <Widget>[
-                                          ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(25.0),
-                                            child: Image.network(
-                                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgIWwryUUArHF_DWOh2Xxkg_X96SC-BbMiWp1DrNTYgpBH7AJ3G8q_w_XjKdAJSLh4pW0&usqp=CAU",
-                                              height: 50.0,
-                                            ),
-                                          ),
-                                          Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 15, top: 20),
-                                                  child: Text(
-                                                      "Fresher's Party 22",
-                                                      style: GoogleFonts
-                                                          .montserrat(
-                                                        color: const Color
-                                                                .fromRGBO(
-                                                            54, 54, 54, 1),
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontSize: 16,
-                                                      ),
-                                                      textAlign:
-                                                          TextAlign.left),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 15),
-                                                  child: Text("B Tech 2021",
-                                                      style: GoogleFonts
-                                                          .montserrat(
-                                                        color: const Color
-                                                                .fromRGBO(
-                                                            54, 54, 54, 1),
-                                                        fontWeight:
-                                                            FontWeight.w300,
-                                                        fontSize: 15,
-                                                      ),
-                                                      textAlign:
-                                                          TextAlign.left),
-                                                ),
-                                              ]),
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text("Rs. 49,700",
-                                                      style: GoogleFonts
-                                                          .montserrat(
-                                                              color: const Color
-                                                                      .fromARGB(
-                                                                  255,
-                                                                  244,
-                                                                  92,
-                                                                  92),
-                                                              fontSize: 16)),
-                                                  Text("Rs. 42,500",
-                                                      style: GoogleFonts
-                                                          .montserrat(
-                                                              color: const Color
-                                                                      .fromARGB(
-                                                                  255,
-                                                                  138,
-                                                                  207,
-                                                                  84),
-                                                              fontSize: 16))
-                                                ]),
-                                          )
-                                        ],
-                                      ))),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(25.0),
+                              child: Image.network(
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgIWwryUUArHF_DWOh2Xxkg_X96SC-BbMiWp1DrNTYgpBH7AJ3G8q_w_XjKdAJSLh4pW0&usqp=CAU",
+                                height: 50.0,
+                              ),
                             ),
-                          ])),
-                ))
+                            Expanded(
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 15, top: 20),
+                                      child: Text(ledger["title"],
+                                          style: GoogleFonts.montserrat(
+                                            color: const Color.fromRGBO(
+                                                54, 54, 54, 1),
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 16,
+                                          ),
+                                          textAlign: TextAlign.left),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 15),
+                                      child: Text(ledger["subtitle"],
+                                          style: GoogleFonts.montserrat(
+                                            color: const Color.fromRGBO(
+                                                54, 54, 54, 1),
+                                            fontWeight: FontWeight.w300,
+                                            fontSize: 15,
+                                          ),
+                                          textAlign: TextAlign.left),
+                                    ),
+                                  ]),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(ledger["debit"],
+                                        style: GoogleFonts.montserrat(
+                                            color: const Color.fromARGB(
+                                                255, 244, 92, 92),
+                                            fontSize: 16)),
+                                    Text(ledger["credit"],
+                                        style: GoogleFonts.montserrat(
+                                            color: const Color.fromARGB(
+                                                255, 138, 207, 84),
+                                            fontSize: 16))
+                                  ]),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                }).toList());
+              },
+            )
           ],
         ),
       ),

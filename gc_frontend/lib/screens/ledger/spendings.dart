@@ -1,7 +1,5 @@
-// import 'dart:html';
-
-// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:gc_frontend/screens/ledger/transcation.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SpendingsPage extends StatefulWidget {
@@ -16,6 +14,7 @@ class _SpendingsPageState extends State<SpendingsPage>
   late PageController _pageController;
   late TabController _tabController;
   String _title = "Spendings";
+
   @override
   void initState() {
     super.initState();
@@ -214,9 +213,9 @@ class _SpendingsPageState extends State<SpendingsPage>
                   _title = "Credits";
                 }
               });
-              _pageController.animateToPage(val,
-                  duration: const Duration(milliseconds: 100),
-                  curve: Curves.elasticInOut);
+              _pageController.jumpToPage(
+                val,
+              );
             },
             unselectedLabelColor: Colors.grey.shade700,
             indicatorColor: const Color.fromRGBO(244, 92, 92, 1),
@@ -242,11 +241,16 @@ class _SpendingsPageState extends State<SpendingsPage>
         ),
         Expanded(
           child: PageView(
-            scrollDirection: Axis.vertical,
+            scrollDirection: Axis.horizontal,
             allowImplicitScrolling: false,
-            pageSnapping: false,
+            pageSnapping: true,
             physics: const RangeMaintainingScrollPhysics(),
             controller: _pageController,
+            onPageChanged: (value) {
+              setState(() {
+                _tabController.animateTo(value);
+              });
+            },
             // key: sliverListtKey,
             children: [
               Container(
@@ -266,109 +270,126 @@ class _SpendingsPageState extends State<SpendingsPage>
                 elevation: 8,
                 color: const Color.fromRGBO(240, 240, 240, 1),
                 // child: Expanded(
-                child: SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Column(
-                        // mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          InkWell(
-                            onTap: () {
-                              // Navigator.push(context, )
-                            },
-                            child: Container(
-                                margin: const EdgeInsets.only(top: 10),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  color: Colors.white,
-                                ),
-                                child: SizedBox(
-                                    height: 80,
-                                    width: MediaQuery.of(context).size.width *
-                                        0.95,
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: <Widget>[
-                                        ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(7.0),
-                                          child: Image.network(
-                                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGL98ush_JVAtrRt7HMg-uf0tD51kRZBYG0A&usqp=CAU",
-                                            height: 50.0,
-                                          ),
+                child: Stack(
+                  children: [
+                    Positioned(
+                        bottom: 20,
+                        right: 20,
+                        child: IconButton(
+                          iconSize: 20,
+                          onPressed: () {},
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  const Color.fromRGBO(244, 106, 92, 1)),
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ))),
+                          icon: const Icon(
+                            Icons.plus_one,
+                            color: Colors.white,
+                          ),
+                        )),
+                    SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: Column(children: [
+                          Container(
+                            margin: const EdgeInsets.only(top: 10),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20.0),
+                              color: Colors.white,
+                            ),
+                            child: InkWell(
+                              onTap: () => showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  backgroundColor: Colors.transparent,
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.vertical(
+                                      top: Radius.circular(20),
+                                    ),
+                                  ),
+                                  context: context,
+                                  builder: (context) => const Transcation()),
+                              child: SizedBox(
+                                  height: 80,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.95,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: <Widget>[
+                                      ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(7.0),
+                                        child: Image.network(
+                                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGL98ush_JVAtrRt7HMg-uf0tD51kRZBYG0A&usqp=CAU",
+                                          height: 50.0,
                                         ),
-                                        Column(
+                                      ),
+                                      Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 15, top: 20),
+                                              child: Text("Soft Drinks",
+                                                  style: GoogleFonts.montserrat(
+                                                    color: const Color.fromRGBO(
+                                                        54, 54, 54, 1),
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 18,
+                                                  ),
+                                                  textAlign: TextAlign.left),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 15),
+                                              child: Text("Monal Canteen",
+                                                  style: GoogleFonts.montserrat(
+                                                    color: const Color.fromRGBO(
+                                                        54, 54, 54, 1),
+                                                    fontWeight: FontWeight.w300,
+                                                    fontSize: 14,
+                                                  ),
+                                                  textAlign: TextAlign.left),
+                                            ),
+                                          ]),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                                CrossAxisAlignment.end,
                                             children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 15, top: 20),
-                                                child: Text("Soft Drinks",
-                                                    style:
-                                                        GoogleFonts.montserrat(
-                                                      color:
-                                                          const Color.fromRGBO(
-                                                              54, 54, 54, 1),
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontSize: 18,
-                                                    ),
-                                                    textAlign: TextAlign.left),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 15),
-                                                child: Text("Monal Canteen",
-                                                    style:
-                                                        GoogleFonts.montserrat(
-                                                      color:
-                                                          const Color.fromRGBO(
-                                                              54, 54, 54, 1),
-                                                      fontWeight:
-                                                          FontWeight.w300,
-                                                      fontSize: 14,
-                                                    ),
-                                                    textAlign: TextAlign.left),
-                                              ),
+                                              Text("Rs. 30000",
+                                                  style: GoogleFonts.montserrat(
+                                                    color: const Color.fromRGBO(
+                                                        113, 113, 113, 1),
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w700,
+                                                  )),
+                                              Text("27 Jan",
+                                                  style: GoogleFonts.montserrat(
+                                                    color: const Color.fromRGBO(
+                                                        113, 113, 113, 1),
+                                                    fontSize: 12,
+                                                    fontStyle: FontStyle.italic,
+                                                  ))
                                             ]),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.end,
-                                              children: [
-                                                Text("Rs. 30000",
-                                                    style:
-                                                        GoogleFonts.montserrat(
-                                                      color:
-                                                          const Color.fromRGBO(
-                                                              113, 113, 113, 1),
-                                                      fontSize: 16,
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                    )),
-                                                Text("27 Jan",
-                                                    style:
-                                                        GoogleFonts.montserrat(
-                                                      color:
-                                                          const Color.fromRGBO(
-                                                              113, 113, 113, 1),
-                                                      fontSize: 12,
-                                                      fontStyle:
-                                                          FontStyle.italic,
-                                                    ))
-                                              ]),
-                                        )
-                                      ],
-                                    ))),
+                                      )
+                                    ],
+                                  )),
+                            ),
                           ),
                         ])),
+                  ],
+                ),
               ),
               Card(
                 shape: const RoundedRectangleBorder(
