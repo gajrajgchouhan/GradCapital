@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:math';
 
+import 'package:gc_frontend/screens/ledger/payment/manual.dart';
+
 class Payment extends StatelessWidget {
   const Payment({
     super.key,
@@ -50,7 +52,14 @@ class Payment extends StatelessWidget {
                       mainAxisSpacing: 15.0,
                     ),
                     children: [
-                      Card(
+                      InkWell(onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ManualEntry()),
+                        );
+                      },
+                     child: Card(
                           shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(20)),
                           ),
@@ -85,7 +94,7 @@ class Payment extends StatelessWidget {
                                               color: const Color.fromRGBO(
                                                   179, 179, 179, 1))))
                                 ]),
-                          )),
+                          ))),
                       Card(
                           shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(20)),
