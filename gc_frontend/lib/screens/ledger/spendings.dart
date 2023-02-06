@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gc_frontend/screens/ledger/payment.dart';
 import 'package:gc_frontend/screens/ledger/transcation.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -275,22 +276,43 @@ class _SpendingsPageState extends State<SpendingsPage>
                     Positioned(
                         bottom: 20,
                         right: 20,
-                        child: IconButton(
-                          iconSize: 20,
-                          onPressed: () {},
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  const Color.fromRGBO(244, 106, 92, 1)),
-                              shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20.0),
-                              ))),
-                          icon: const Icon(
-                            Icons.plus_one,
-                            color: Colors.white,
+                        child: FloatingActionButton.small(
+                          shape:const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10))
                           ),
-                        )),
+                          backgroundColor: const Color.fromRGBO(244, 92, 92, 1),
+                          hoverColor: const Color.fromARGB(255, 236, 36, 36),
+                          onPressed: () {
+                            showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  backgroundColor: Colors.transparent,
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.vertical(
+                                      top: Radius.circular(20),
+                                    ),
+                                  ),
+                                  context: context,
+                                  builder: (context) => const Payment());
+                          },
+                          child: const Icon(Icons.add,size:30),
+                        )
+                        // IconButton(
+                        //   iconSize: 20,
+                        //   onPressed: () {},
+                        //   style: ButtonStyle(
+                        //       backgroundColor: MaterialStateProperty.all<Color>(
+                        //           const Color.fromRGBO(244, 106, 92, 1)),
+                        //       shape: MaterialStateProperty.all<
+                        //               RoundedRectangleBorder>(
+                        //           RoundedRectangleBorder(
+                        //         borderRadius: BorderRadius.circular(210.0),
+                        //       ))),
+                        //   icon: const Icon(
+                        //     Icons.plus_one,
+                        //     color: Colors.red,
+                        //   ),
+                        // )
+                        ),
                     SizedBox(
                         width: MediaQuery.of(context).size.width,
                         child: Column(children: [
