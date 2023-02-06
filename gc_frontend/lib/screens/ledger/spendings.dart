@@ -57,7 +57,16 @@ class _SpendingsPageState extends State<SpendingsPage>
                         color: const Color.fromRGBO(54, 54, 54, 1),
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
-                      ))
+                      )),
+                  InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Icon(
+                        Icons.settings,
+                        color: Color.fromRGBO(54, 54, 54, 1),
+                        size: 22.0,
+                      )),
                 ]))),
         Container(
             width: MediaQuery.of(context).size.width,
