@@ -40,7 +40,7 @@ class Payment extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                             color: const Color.fromRGBO(244, 106, 92, 1)))),
                 GridView(
-                    padding: const EdgeInsets.all(45),
+                    padding: const EdgeInsets.all(15),
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     gridDelegate:
@@ -77,7 +77,7 @@ class Payment extends StatelessWidget {
                                         weight: 10,
                                       )),
                                   Padding(
-                                      padding: const EdgeInsets.all(15),
+                                      padding: const EdgeInsets.all(10),
                                       child: Text("Manual\n Entry",
                                           style: GoogleFonts.montserrat(
                                               fontSize: 14,
@@ -113,7 +113,7 @@ class Payment extends StatelessWidget {
                                         weight: 10,
                                       )),
                                   Padding(
-                                      padding: const EdgeInsets.all(15),
+                                      padding: const EdgeInsets.all(10),
                                       child: Text("MOI QR\n Scanner",
                                           style: GoogleFonts.montserrat(
                                               fontSize: 14,
