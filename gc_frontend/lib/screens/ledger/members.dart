@@ -57,51 +57,58 @@ class _MembersPageState extends State<MembersPage> {
                         )),
                   ]),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  children: [
-                    Text(
-                      "B Tech 2021",
-                      style: GoogleFonts.montserrat(
-                        fontSize: 14,
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "B Tech 2021",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 14,
+                        ),
                       ),
+                      Text(
+                        "Freshers' Party 22",
+                        style: GoogleFonts.montserrat(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      )
+                    ],
+                  ),
+                  Text(
+                    "Edit",
+                    style: GoogleFonts.montserrat(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: Colors.red,
                     ),
-                    Text(
-                      "Freshers' Party 22",
-                      style: GoogleFonts.montserrat(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    )
-                  ],
-                ),
-                Text(
-                  "Edit",
-                  style: GoogleFonts.montserrat(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                    color: Colors.red,
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Participants",
-                  style: GoogleFonts.montserrat(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Participants",
+                    style: GoogleFonts.montserrat(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
                   ),
-                ),
-                InkWell(
-                  onTap: null,
-                  child: Icon(Icons.search),
-                )
-              ],
+                  InkWell(
+                    onTap: null,
+                    child: Icon(Icons.search),
+                  )
+                ],
+              ),
             ),
             Column(
               children: [
@@ -114,8 +121,11 @@ class _MembersPageState extends State<MembersPage> {
                         Icons.person_add,
                         color: Colors.red,
                       ),
+                      SizedBox(
+                        width: 10,
+                      ),
                       Text(
-                        "Add/Edit Admins",
+                        "Add / Edit Admins",
                         style: GoogleFonts.montserrat(
                           color: Colors.red,
                           fontSize: 12,
@@ -133,8 +143,11 @@ class _MembersPageState extends State<MembersPage> {
                         Icons.person,
                         color: Colors.blue,
                       ),
+                      SizedBox(
+                        width: 10,
+                      ),
                       Text(
-                        "Add/Edit Members",
+                        "Add / Edit Members",
                         style: GoogleFonts.montserrat(
                           color: Colors.blue,
                           fontSize: 12,
@@ -167,6 +180,9 @@ class _MembersPageState extends State<MembersPage> {
                                     children: [
                                       Icon(Icons.person_3_rounded,
                                           color: Colors.black),
+                                      SizedBox(
+                                        width: 15,
+                                      ),
                                       Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -193,7 +209,7 @@ class _MembersPageState extends State<MembersPage> {
                                       e["message"]!,
                                       textAlign: TextAlign.right,
                                       style: GoogleFonts.montserrat(
-                                          fontWeight: FontWeight.bold,
+                                          // fontWeight: FontWeight.bold,
                                           fontSize: 14,
                                           color: e["credit"]!
                                               ? Colors.green
@@ -203,12 +219,20 @@ class _MembersPageState extends State<MembersPage> {
                                 ],
                               ),
                             ),
-                            (e["admin"]!
-                                ? Icon(Icons.arrow_forward_ios)
-                                : SizedBox(
-                                    width: 0,
-                                    height: 0,
-                                  ))
+                            if (e["admin"]!)
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Icon(Icons.arrow_forward_ios),
+                                ],
+                              )
+                            else
+                              SizedBox(
+                                width: 0,
+                                height: 0,
+                              )
                           ],
                         ),
                       );
