@@ -9,7 +9,7 @@ const fs = require("fs");
 const { log } = require("console");
 const multer = require("multer");
 const request = require('request-promise');
-const {extractGST} = require("./gst");
+const {extractGST, verifyGST} = require("./gst");
 require("dotenv").config();
 
 
@@ -52,8 +52,10 @@ async function main() {
     
     app.post("/receipt", upload.single('formFile'), async (req, res) => {
         const gstNumber = await extractGST("fileName");
-        if (gstNumber === null) res.send("Invalid GST number");
-        else res.send("The GSTIN Registration No is " + String(gstNumber));
+        if (gstNumber === null) res.send("The receipt does not have a GST number");
+        const isFake = await verifyGST(gstNumber);
+        if(isFake === false) res.send("The GSTIN Registration No given in the receipt as " + String(gstNumber) + " is fake!!")
+        else res.send("The GSTIN Registration No is " + String(gstNumber) + " and is valid");
     })
 
     authRoutes(app);
@@ -62,5 +64,7 @@ async function main() {
         console.log(`Example app listening on port ${port}`);
     });
 }
+
+
 
 main();
