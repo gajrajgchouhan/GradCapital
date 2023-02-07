@@ -1,21 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:gc_frontend/AppSettings.dart';
 import 'package:gc_frontend/screens/ledger/ledgers.dart';
-// import 'package:gc_frontend/screens/authenticate/sign_up.dart';
 import 'package:gc_frontend/screens/authenticate/sign_in.dart';
+import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
-void main() => runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final preferences = await StreamingSharedPreferences.instance;
+
+  runApp(MyApp(
+    preferences: preferences,
+  ));
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final StreamingSharedPreferences _preferences;
+
+  const MyApp({super.key, required StreamingSharedPreferences preferences})
+      : _preferences = preferences;
 
   static const String _title = 'Flutter Code Sample';
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: _title,
-      home: HomePage(),
-    );
+    return AppSettings(
+        preferences: _preferences,
+        child: Builder(builder: (context) {
+          return const MaterialApp(
+            title: _title,
+            home: HomePage(),
+          );
+        }));
   }
 }
 

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:gc_frontend/AppSettings.dart';
 import 'package:gc_frontend/screens/ledger/payment.dart';
 import 'package:gc_frontend/screens/ledger/members.dart';
 import 'package:gc_frontend/screens/ledger/transcation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gc_frontend/read_json.dart';
+import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
 class SpendingsPage extends StatefulWidget {
   const SpendingsPage({super.key});
@@ -329,17 +331,17 @@ class _SpendingsPageState extends State<SpendingsPage>
                             hoverColor: const Color.fromARGB(255, 231, 53, 53),
                             child: const Icon(Icons.add, size: 20),
                           )),
-                      FutureBuilder(
-                        future: readJson('assets/data/spendings.json'),
-                        builder: (context, snapshot) {
-                          print(snapshot.data);
-                          if (!snapshot.hasData) {
-                            return const CircularProgressIndicator();
-                          }
-                          var spendings = snapshot.data as List;
+                      //     PreferenceBuilder(
+                      // preference: AppSettings.of(context).transcations,
+                      // builder: (context, transcations) {
+                      // }
+                      //   )
+                      PreferenceBuilder(
+                        preference: AppSettings.of(context).transcations,
+                        builder: (context, transcations) {
                           return Column(
                               // mainAxisAlignment: MainAxisAlignment.start,
-                              children: spendings.map((spending) {
+                              children: transcations.map((spending) {
                             return Container(
                               margin: const EdgeInsets.only(top: 10),
                               decoration: BoxDecoration(
@@ -383,7 +385,7 @@ class _SpendingsPageState extends State<SpendingsPage>
                                               Padding(
                                                 padding: const EdgeInsets.only(
                                                     left: 15, top: 20),
-                                                child: Text(spending["title"],
+                                                child: Text(spending.title,
                                                     style:
                                                         GoogleFonts.montserrat(
                                                       color:
@@ -398,7 +400,7 @@ class _SpendingsPageState extends State<SpendingsPage>
                                               Padding(
                                                 padding: const EdgeInsets.only(
                                                     left: 15),
-                                                child: Text(spending["vendor"],
+                                                child: Text(spending.vendor,
                                                     style:
                                                         GoogleFonts.montserrat(
                                                       color:
@@ -419,7 +421,7 @@ class _SpendingsPageState extends State<SpendingsPage>
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.end,
                                               children: [
-                                                Text(spending["debit"],
+                                                Text(spending.debit,
                                                     style:
                                                         GoogleFonts.montserrat(
                                                       color:

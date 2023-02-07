@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gc_frontend/screens/ledger/scanQR.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:math';
 
@@ -52,49 +53,52 @@ class Payment extends StatelessWidget {
                       mainAxisSpacing: 15.0,
                     ),
                     children: [
-                      InkWell(onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const ManualEntry()),
-                        );
-                      },
-                     child: Card(
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                          ),
-                          elevation: 8,
-                          child: Container(
-                            padding: const EdgeInsets.all(20),
-                            child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                      padding: const EdgeInsets.all(4),
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          border: Border.all(
-                                            color: const Color.fromRGBO(
+                      InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ManualEntry()),
+                            );
+                          },
+                          child: Card(
+                              shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                              ),
+                              elevation: 8,
+                              child: Container(
+                                padding: const EdgeInsets.all(20),
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                          padding: const EdgeInsets.all(4),
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              border: Border.all(
+                                                color: const Color.fromRGBO(
+                                                    113, 113, 113, 1),
+                                                width: 2,
+                                              )),
+                                          child: const Icon(
+                                            Icons.edit_document,
+                                            color: Color.fromRGBO(
                                                 113, 113, 113, 1),
-                                            width: 2,
+                                            size: 35.0,
+                                            weight: 10,
                                           )),
-                                      child: const Icon(
-                                        Icons.edit_document,
-                                        color: Color.fromRGBO(113, 113, 113, 1),
-                                        size: 35.0,
-                                        weight: 10,
-                                      )),
-                                  Padding(
-                                      padding: const EdgeInsets.all(10),
-                                      child: Text("Manual\n Entry",
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w700,
-                                              color: const Color.fromRGBO(
-                                                  179, 179, 179, 1))))
-                                ]),
-                          ))),
+                                      Padding(
+                                          padding: const EdgeInsets.all(10),
+                                          child: Text("Manual\n Entry",
+                                              style: GoogleFonts.montserrat(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w700,
+                                                  color: const Color.fromRGBO(
+                                                      179, 179, 179, 1))))
+                                    ]),
+                              ))),
                       Card(
                           shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -121,14 +125,23 @@ class Payment extends StatelessWidget {
                                         size: 35.0,
                                         weight: 10,
                                       )),
-                                  Padding(
-                                      padding: const EdgeInsets.all(10),
-                                      child: Text("MOI QR\n Scanner",
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w700,
-                                              color: const Color.fromRGBO(
-                                                  179, 179, 179, 1))))
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const ScanQRPage()));
+                                    },
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(10),
+                                        child: Text("MOI QR\n Scanner",
+                                            style: GoogleFonts.montserrat(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w700,
+                                                color: const Color.fromRGBO(
+                                                    179, 179, 179, 1)))),
+                                  )
                                 ]),
                           )),
                       Card(

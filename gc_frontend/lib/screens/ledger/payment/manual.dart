@@ -1,11 +1,8 @@
-import 'dart:html';
-
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:gc_frontend/read_json.dart';
+import 'package:gc_frontend/AppSettings.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gc_frontend/screens/ledger/payment/model.dart';
-import 'package:gc_frontend/screens/ledger/spendings.dart';
-import 'dart:convert';
 
 class ManualEntry extends StatefulWidget {
   const ManualEntry({super.key});
@@ -69,15 +66,6 @@ class _ManualEntryState extends State<ManualEntry> {
                                 )),
                           ],
                         ),
-                        InkWell(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Icon(
-                              Icons.settings,
-                              color: Color.fromRGBO(54, 54, 54, 1),
-                              size: 22.0,
-                            )),
                       ]))),
           Form(
             key: _formKey,
@@ -158,41 +146,53 @@ class _ManualEntryState extends State<ManualEntry> {
                                       BorderRadius.all(Radius.circular(20)),
                                 ),
                                 elevation: 8,
-                                child: Container(
-                                  padding: const EdgeInsets.all(20),
-                                  child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                            padding: const EdgeInsets.all(4),
-                                            decoration: BoxDecoration(
-                                                color: const Color.fromRGBO(
-                                                    255, 226, 223, 1),
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                border: Border.all(
+                                child: InkWell(
+                                  onTap: () async {
+                                    final result =
+                                        await FilePicker.platform.pickFiles();
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.all(20),
+                                    child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                              padding: const EdgeInsets.all(4),
+                                              decoration: BoxDecoration(
                                                   color: const Color.fromRGBO(
-                                                      250, 166, 158, 1),
-                                                  width: 2,
-                                                )),
-                                            child: const Icon(
-                                              Icons.receipt,
-                                              color: Color.fromRGBO(
-                                                  250, 166, 158, 1),
-                                              size: 20.0,
-                                              weight: 10,
-                                            )),
-                                        Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 10),
-                                            child: Text("BILLS",
-                                                style: GoogleFonts.montserrat(
-                                                    fontSize: 10,
-                                                    fontWeight: FontWeight.w600,
+                                                      255, 226, 223, 1),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                  border: Border.all(
                                                     color: const Color.fromRGBO(
-                                                        179, 179, 179, 1))))
-                                      ]),
+                                                        250, 166, 158, 1),
+                                                    width: 2,
+                                                  )),
+                                              child: const Icon(
+                                                Icons.receipt,
+                                                color: Color.fromRGBO(
+                                                    250, 166, 158, 1),
+                                                size: 20.0,
+                                                weight: 10,
+                                              )),
+                                          Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 10),
+                                              child: Text("BILLS",
+                                                  style: GoogleFonts.montserrat(
+                                                      fontSize: 10,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color:
+                                                          const Color.fromRGBO(
+                                                              179,
+                                                              179,
+                                                              179,
+                                                              1))))
+                                        ]),
+                                  ),
                                 ))),
                         SizedBox(
                             width: MediaQuery.of(context).size.width * .3,
@@ -413,19 +413,7 @@ class _ManualEntryState extends State<ManualEntry> {
                         );
                         _formKey.currentState?.save();
                         print("debugggggggg");
-                        // ignore: unused_local_variable
-                        Map a = {
-                          "title": model.title,
-                          "uploader": model.uploader,
-                          "vendor": model.vendor,
-                          "payMethod": model.payMethod,
-                          "debit": model.debit,
-                          "gstNo": model.gstNo,
-                          "gstAmt": model.gstAmt
-                        };
-                        print(a);
-                          Navigator.pop(context);
-                          Navigator.pop(context);
+                        AppSettings.of(context).addTranscation(model);
                       }
                     },
                     style: ButtonStyle(
