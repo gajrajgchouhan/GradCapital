@@ -1,7 +1,9 @@
 import 'dart:math';
 import 'package:badges/badges.dart' as BadgesModule;
 import 'package:flutter/material.dart';
+import 'package:gc_frontend/AppSettings.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
 const details = ([
   {
@@ -22,11 +24,16 @@ const details = ([
   },
 ]);
 
-class Transcation extends StatelessWidget {
+class Transcation extends StatefulWidget {
   const Transcation({
     super.key,
   });
 
+  @override
+  State<Transcation> createState() => _TranscationState();
+}
+
+class _TranscationState extends State<Transcation> {
   @override
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(

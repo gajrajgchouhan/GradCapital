@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gc_frontend/read_json.dart';
+import 'package:gc_frontend/screens/ledger/newGroup.dart';
 import 'package:gc_frontend/screens/ledger/spendings.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -21,16 +22,8 @@ class _LedgerPageState extends State<LedgerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.white,
-      // title: Text(widget.title,
-      //     style: const GoogleFonts.montserrat(
-      //         color: Color.fromRGBO(50, 63, 75, 1),
-      //         fontWeight: FontWeight.bold)),
-      // ),
       body: Center(
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -41,27 +34,40 @@ class _LedgerPageState extends State<LedgerPage> {
                     child: Text("MONDAY | 23 JAN",
                         style: GoogleFonts.montserrat(
                           color: const Color.fromRGBO(54, 54, 54, 1),
-                          // fontWeight: FontWeight.w800,
                           fontSize: 15,
                         ))),
                 Row(
-                  children: const [
-                    Padding(
+                  children: [
+                    const Padding(
                         padding:
                             EdgeInsets.only(top: 20, bottom: 15, right: 15),
                         child: Icon(
-                          Icons.toggle_on,
+                          Icons.toggle_off,
                           color: Color.fromRGBO(244, 92, 92, 1),
                           size: 50.0,
                         )),
-                    Padding(
-                        padding:
-                            EdgeInsets.only(top: 20, bottom: 15, right: 40),
-                        child: Icon(
-                          Icons.add,
-                          color: Color.fromRGBO(113, 113, 113, 1),
-                          size: 35.0,
-                        )),
+                    InkWell(
+                      onTap: () {
+                        showModalBottomSheet(
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(20),
+                              ),
+                            ),
+                            context: context,
+                            builder: (context) => const NewGroup());
+                      },
+                      child: const Padding(
+                          padding:
+                              EdgeInsets.only(top: 20, bottom: 15, right: 40),
+                          child: Icon(
+                            Icons.add,
+                            color: Color.fromRGBO(113, 113, 113, 1),
+                            size: 35.0,
+                          )),
+                    ),
                   ],
                 ),
               ],
