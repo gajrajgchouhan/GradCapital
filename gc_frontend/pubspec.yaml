@@ -79,6 +79,7 @@ flutter:
     - assets/data/ledgers.json
     - assets/data/spendings.json
     - assets/images/bill.jpg
+    - assets/images/notif.jpg
     - assets/images/startup_screen.png 
 
   # To add assets to your application, add an assets section, like this:
