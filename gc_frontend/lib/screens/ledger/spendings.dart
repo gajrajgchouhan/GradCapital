@@ -3,6 +3,7 @@ import 'package:gc_frontend/screens/ledger/payment.dart';
 import 'package:gc_frontend/screens/ledger/members.dart';
 import 'package:gc_frontend/screens/ledger/transcation.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gc_frontend/read_json.dart';
 
 class SpendingsPage extends StatefulWidget {
   const SpendingsPage({super.key});
@@ -328,10 +329,18 @@ class _SpendingsPageState extends State<SpendingsPage>
                             hoverColor: const Color.fromARGB(255, 231, 53, 53),
                             child: const Icon(Icons.add, size: 20),
                           )),
-                      SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          child: Column(children: [
-                            Container(
+                      FutureBuilder(
+                        future: readJson('assets/data/spendings.json'),
+                        builder: (context, snapshot) {
+                          print(snapshot.data);
+                          if (!snapshot.hasData) {
+                            return const CircularProgressIndicator();
+                          }
+                          var spendings = snapshot.data as List;
+                          return Column(
+                              // mainAxisAlignment: MainAxisAlignment.start,
+                              children: spendings.map((spending) {
+                            return Container(
                               margin: const EdgeInsets.only(top: 10),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20.0),
@@ -374,7 +383,7 @@ class _SpendingsPageState extends State<SpendingsPage>
                                               Padding(
                                                 padding: const EdgeInsets.only(
                                                     left: 15, top: 20),
-                                                child: Text("Soft Drinks",
+                                                child: Text(spending["title"],
                                                     style:
                                                         GoogleFonts.montserrat(
                                                       color:
@@ -389,7 +398,7 @@ class _SpendingsPageState extends State<SpendingsPage>
                                               Padding(
                                                 padding: const EdgeInsets.only(
                                                     left: 15),
-                                                child: Text("Monal Canteen",
+                                                child: Text(spending["vendor"],
                                                     style:
                                                         GoogleFonts.montserrat(
                                                       color:
@@ -410,7 +419,7 @@ class _SpendingsPageState extends State<SpendingsPage>
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.end,
                                               children: [
-                                                Text("Rs. 30000",
+                                                Text(spending["debit"],
                                                     style:
                                                         GoogleFonts.montserrat(
                                                       color:
@@ -435,8 +444,10 @@ class _SpendingsPageState extends State<SpendingsPage>
                                       ],
                                     )),
                               ),
-                            ),
-                          ])),
+                            );
+                          }).toList());
+                        },
+                      )
                     ],
                   ),
                 ),

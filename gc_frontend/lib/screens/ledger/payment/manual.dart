@@ -1,7 +1,11 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:gc_frontend/read_json.dart';
-import 'package:gc_frontend/screens/ledger/spendings.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gc_frontend/screens/ledger/payment/model.dart';
+import 'package:gc_frontend/screens/ledger/spendings.dart';
+import 'dart:convert';
 
 class ManualEntry extends StatefulWidget {
   const ManualEntry({super.key});
@@ -12,6 +16,14 @@ class ManualEntry extends StatefulWidget {
 
 class _ManualEntryState extends State<ManualEntry> {
   final _formKey = GlobalKey<FormState>();
+  Model model = Model(
+      title: '',
+      uploader: '',
+      vendor: '',
+      payMethod: '',
+      debit: '',
+      gstNo: '',
+      gstAmt: '');
   @override
   void initState() {
     super.initState();
@@ -91,6 +103,32 @@ class _ManualEntryState extends State<ManualEntry> {
                           return 'Please enter some text';
                         }
                         return null;
+                      },
+                      onSaved: (value) {
+                        model.title = value!;
+                      },
+                    )),
+                Padding(
+                    padding: const EdgeInsets.only(left: 25),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                          border: UnderlineInputBorder(),
+                          labelText: 'Your Name',
+                          labelStyle: TextStyle(
+                            color: Color.fromRGBO(179, 177, 177, 1),
+                            fontWeight: FontWeight.w700,
+                            fontSize: 14,
+                            fontFamily: 'Montserrat',
+                          )),
+                      // The validator receives the text that the user has entered.
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter some text';
+                        }
+                        return null;
+                      },
+                      onSaved: (value) {
+                        model.uploader = value!;
                       },
                     )),
                 Padding(
@@ -267,6 +305,9 @@ class _ManualEntryState extends State<ManualEntry> {
                         }
                         return null;
                       },
+                      onSaved: (value) {
+                        model.vendor = value!;
+                      },
                     )),
                 Padding(
                     padding: const EdgeInsets.only(left: 25, top: 20),
@@ -286,6 +327,9 @@ class _ManualEntryState extends State<ManualEntry> {
                         }
                         return null;
                       },
+                      onSaved: (value) {
+                        model.payMethod = value!;
+                      },
                     )),
                 Padding(
                     padding: const EdgeInsets.only(left: 25, top: 20),
@@ -304,6 +348,9 @@ class _ManualEntryState extends State<ManualEntry> {
                           return 'Please enter some text';
                         }
                         return null;
+                      },
+                      onSaved: (value) {
+                        model.debit = value!;
                       },
                     )),
                 Padding(
@@ -325,6 +372,9 @@ class _ManualEntryState extends State<ManualEntry> {
                         }
                         return null;
                       },
+                      onSaved: (value) {
+                        model.gstNo = value!;
+                      },
                     )),
                 Padding(
                     padding: const EdgeInsets.only(left: 25, top: 20),
@@ -345,6 +395,9 @@ class _ManualEntryState extends State<ManualEntry> {
                         }
                         return null;
                       },
+                      onSaved: (value) {
+                        model.gstAmt = value!;
+                      },
                     )),
                 Center(
                     child: Padding(
@@ -358,6 +411,21 @@ class _ManualEntryState extends State<ManualEntry> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text('Processing Data')),
                         );
+                        _formKey.currentState?.save();
+                        print("debugggggggg");
+                        // ignore: unused_local_variable
+                        Map a = {
+                          "title": model.title,
+                          "uploader": model.uploader,
+                          "vendor": model.vendor,
+                          "payMethod": model.payMethod,
+                          "debit": model.debit,
+                          "gstNo": model.gstNo,
+                          "gstAmt": model.gstAmt
+                        };
+                        print(a);
+                          Navigator.pop(context);
+                          Navigator.pop(context);
                       }
                     },
                     style: ButtonStyle(

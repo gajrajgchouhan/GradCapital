@@ -1,0 +1,13 @@
+{
+    "spendings": [
+        {
+            "title": "Soft Drinks",
+            "uploader": "Aditya",
+            "vendor": "Monal Canteen",
+            "payMethod": "Cash",
+            "debit": "₹ 30,000 ",
+            "gstNo": "13456788",
+            "gstAmt": "100"
+        }
+    ]
+}
