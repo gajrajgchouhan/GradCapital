@@ -21,10 +21,6 @@ class _ManualEntryState extends State<ManualEntry> {
       debit: '',
       gstNo: '',
       gstAmt: '');
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {

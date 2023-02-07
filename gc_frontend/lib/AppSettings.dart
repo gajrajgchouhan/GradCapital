@@ -5,20 +5,31 @@ import 'package:gc_frontend/screens/ledger/payment/model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
-class TranscationAdaptor extends PreferenceAdapter<List<Model>> {
+class TranscationAdaptor extends PreferenceAdapter<List<dynamic>> {
   @override
   getValue(SharedPreferences preferences, String key) {
-    return json.decode(preferences.get(key).toString()) as List<Model>;
+    var v = preferences.get(key);
+    if (v == null) {
+      return null;
+    }
+    print(["vvvvvvvvv", v, v.runtimeType]);
+    var js = json.decode(v as String);
+    print("jssssssssssssss");
+    if (js == null) {
+      return null;
+    } else {
+      return js as List<dynamic>;
+    }
   }
 
   @override
   Future<bool> setValue(SharedPreferences preferences, String key, value) {
-    return preferences.setString(key, value.toString());
+    return preferences.setString(key, json.encode(value));
   }
 }
 
 class AppSettings extends InheritedWidget {
-  final Preference<List<Model>> transcations;
+  final Preference<List<dynamic>> transcations;
 
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) => true;
@@ -36,6 +47,16 @@ class AppSettings extends InheritedWidget {
 
   // add transcation
   Future<bool> addTranscation(Model model) {
-    return transcations.setValue([...transcations.getValue(), model]);
+    Map m = {
+      "title": model.title,
+      "uploader": model.uploader,
+      "vendor": model.vendor,
+      "payMethod": model.payMethod,
+      "debit": model.debit,
+      "gstNo": model.gstNo,
+      "gstAmt": model.gstAmt,
+    };
+
+    return transcations.setValue([...transcations.getValue(), m]);
   }
 }

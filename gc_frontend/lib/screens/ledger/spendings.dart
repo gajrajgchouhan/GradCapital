@@ -339,8 +339,13 @@ class _SpendingsPageState extends State<SpendingsPage>
                       PreferenceBuilder(
                         preference: AppSettings.of(context).transcations,
                         builder: (context, transcations) {
+                          print([
+                            "transcations",
+                            transcations,
+                            transcations.runtimeType,
+                            transcations.first
+                          ]);
                           return Column(
-                              // mainAxisAlignment: MainAxisAlignment.start,
                               children: transcations.map((spending) {
                             return Container(
                               margin: const EdgeInsets.only(top: 10),
@@ -385,7 +390,7 @@ class _SpendingsPageState extends State<SpendingsPage>
                                               Padding(
                                                 padding: const EdgeInsets.only(
                                                     left: 15, top: 20),
-                                                child: Text(spending.title,
+                                                child: Text(spending["title"],
                                                     style:
                                                         GoogleFonts.montserrat(
                                                       color:
@@ -400,7 +405,7 @@ class _SpendingsPageState extends State<SpendingsPage>
                                               Padding(
                                                 padding: const EdgeInsets.only(
                                                     left: 15),
-                                                child: Text(spending.vendor,
+                                                child: Text(spending["vendor"],
                                                     style:
                                                         GoogleFonts.montserrat(
                                                       color:
@@ -421,7 +426,7 @@ class _SpendingsPageState extends State<SpendingsPage>
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.end,
                                               children: [
-                                                Text(spending.debit,
+                                                Text(spending["debit"],
                                                     style:
                                                         GoogleFonts.montserrat(
                                                       color:
