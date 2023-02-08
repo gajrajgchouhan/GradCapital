@@ -53,7 +53,7 @@ async function main() {
     app.post("/receipt", upload.single('formFile'), async (req, res) => {
         const gstNumber = await extractGST("fileName");
         if (gstNumber === null) res.send("The receipt does not have a GST number");
-        const isFake = await verifyGST(gstNumber);
+        const isFake = await verifyGST({ gstNo: "33AAJCC8517E1ZS", key_secret: "AgevsDeoiPdA9LgER4znaVwS1w62" });
         if(isFake === false) res.send("The GSTIN Registration No given in the receipt as " + String(gstNumber) + " is fake!!")
         else res.send("The GSTIN Registration No is " + String(gstNumber) + " and is valid");
     })
