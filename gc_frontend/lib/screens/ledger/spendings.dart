@@ -305,212 +305,217 @@ class _SpendingsPageState extends State<SpendingsPage>
                   elevation: 8,
                   color: const Color.fromRGBO(240, 240, 240, 1),
                   // child: Expanded(
-                  child: Column(
+                  child: Stack(
                     children: [
-                      Expanded(
-                        child: Column(
-                          children: [
-                            //     PreferenceBuilder(
-                            // preference: AppSettings.of(context).transcations,
-                            // builder: (context, transcations) {
-                            // }
-                            //   )
-                            PreferenceBuilder(
-                                preference:
-                                    AppSettings.of(context).transcations,
-                                builder: ((context, transcations) {
-                                  print([
-                                    "transcations",
-                                    transcations,
-                                    transcations.runtimeType,
-                                  ]);
-                                  if (transcations.isNotEmpty) {
-                                    return Column(
-                                        children: transcations.map((spending) {
-                                      print("spendingggg");
-                                      print(spending);
-                                      return Container(
-                                        margin: const EdgeInsets.only(top: 10),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20.0),
-                                          color: Colors.white,
-                                        ),
-                                        child: InkWell(
-                                          onTap: () => showModalBottomSheet(
-                                              isScrollControlled: true,
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              shape:
-                                                  const RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.vertical(
-                                                  top: Radius.circular(20),
+                      SingleChildScrollView(
+                        child: Expanded(
+                          child: Column(
+                            children: [
+                              PreferenceBuilder(
+                                  preference:
+                                      AppSettings.of(context).transcations,
+                                  builder: ((context, transcations) {
+                                    print([
+                                      "transcations",
+                                      transcations,
+                                      transcations.runtimeType,
+                                    ]);
+                                    if (transcations.isNotEmpty) {
+                                      return Column(
+                                          children:
+                                              transcations.map((spending) {
+                                        print("spendingggg");
+                                        print(spending);
+                                        return Container(
+                                          margin:
+                                              const EdgeInsets.only(top: 10),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20.0),
+                                            color: Colors.white,
+                                          ),
+                                          child: InkWell(
+                                            onTap: () => showModalBottomSheet(
+                                                isScrollControlled: true,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                shape:
+                                                    const RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.vertical(
+                                                    top: Radius.circular(20),
+                                                  ),
                                                 ),
-                                              ),
-                                              context: context,
-                                              builder: (context) => Transcation(
-                                                    title: spending?["title"],
-                                                    uploader:
-                                                        spending?["uploader"],
-                                                    vendor: spending?["vendor"],
-                                                    payMethod:
-                                                        spending?["payMethod"],
-                                                    debit: spending?["debit"],
-                                                    gstNo: spending?["gstNo"],
-                                                    gstAmt: spending?["gstAmt"],
-                                                    bill: spending?["bill"],
-                                                  )),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: SizedBox(
-                                                height: 85,
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.95,
-                                                child: Column(
-                                                  children: [
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .end,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceAround,
-                                                      children: <Widget>[
-                                                        DynamicIcons
-                                                            .getIconFromName(
-                                                                spending?[
-                                                                        "img"] ??
-                                                                    "restaurant",
-                                                                size: 40)!,
-                                                        Expanded(
-                                                          child: Column(
+                                                context: context,
+                                                builder: (context) =>
+                                                    Transcation(
+                                                      title: spending?["title"],
+                                                      uploader:
+                                                          spending?["uploader"],
+                                                      vendor:
+                                                          spending?["vendor"],
+                                                      payMethod: spending?[
+                                                          "payMethod"],
+                                                      debit: spending?["debit"],
+                                                      gstNo: spending?["gstNo"],
+                                                      gstAmt:
+                                                          spending?["gstAmt"],
+                                                      bill: spending?["bill"],
+                                                    )),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: SizedBox(
+                                                  height: 85,
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.95,
+                                                  child: Column(
+                                                    children: [
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .end,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceAround,
+                                                        children: <Widget>[
+                                                          DynamicIcons
+                                                              .getIconFromName(
+                                                                  spending?[
+                                                                          "img"] ??
+                                                                      "restaurant",
+                                                                  size: 40)!,
+                                                          Expanded(
+                                                            child: Column(
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                            .only(
+                                                                        left:
+                                                                            15,
+                                                                        top:
+                                                                            20),
+                                                                    child: Text(
+                                                                        spending?["title"]! ??
+                                                                            "",
+                                                                        style: GoogleFonts
+                                                                            .montserrat(
+                                                                          color: const Color.fromRGBO(
+                                                                              54,
+                                                                              54,
+                                                                              54,
+                                                                              1),
+                                                                          fontWeight:
+                                                                              FontWeight.w600,
+                                                                          fontSize:
+                                                                              18,
+                                                                        ),
+                                                                        textAlign:
+                                                                            TextAlign.left),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                            .only(
+                                                                        left:
+                                                                            15),
+                                                                    child: Text(
+                                                                        spending?["vendor"]! ??
+                                                                            "",
+                                                                        style: GoogleFonts
+                                                                            .montserrat(
+                                                                          color: const Color.fromRGBO(
+                                                                              54,
+                                                                              54,
+                                                                              54,
+                                                                              1),
+                                                                          fontWeight:
+                                                                              FontWeight.w300,
+                                                                          fontSize:
+                                                                              14,
+                                                                        ),
+                                                                        textAlign:
+                                                                            TextAlign.left),
+                                                                  ),
+                                                                ]),
+                                                          ),
+                                                          Column(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
                                                               crossAxisAlignment:
                                                                   CrossAxisAlignment
-                                                                      .start,
+                                                                      .end,
                                                               children: [
-                                                                Padding(
-                                                                  padding: const EdgeInsets
-                                                                          .only(
-                                                                      left: 15,
-                                                                      top: 20),
-                                                                  child: Text(
-                                                                      spending?[
-                                                                              "title"]! ??
-                                                                          "",
-                                                                      style: GoogleFonts
-                                                                          .montserrat(
-                                                                        color: const Color.fromRGBO(
-                                                                            54,
-                                                                            54,
-                                                                            54,
-                                                                            1),
-                                                                        fontWeight:
-                                                                            FontWeight.w600,
-                                                                        fontSize:
-                                                                            18,
-                                                                      ),
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .left),
-                                                                ),
-                                                                Padding(
-                                                                  padding: const EdgeInsets
-                                                                          .only(
-                                                                      left: 15),
-                                                                  child: Text(
-                                                                      spending?[
-                                                                              "vendor"]! ??
-                                                                          "",
-                                                                      style: GoogleFonts
-                                                                          .montserrat(
-                                                                        color: const Color.fromRGBO(
-                                                                            54,
-                                                                            54,
-                                                                            54,
-                                                                            1),
-                                                                        fontWeight:
-                                                                            FontWeight.w300,
-                                                                        fontSize:
-                                                                            14,
-                                                                      ),
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .left),
-                                                                ),
-                                                              ]),
-                                                        ),
-                                                        Column(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .end,
-                                                            children: [
-                                                              Text(
-                                                                  "₹ ${spending?["debit"]! ?? ""}.00",
-                                                                  style: GoogleFonts
-                                                                      .montserrat(
-                                                                    color: const Color
-                                                                            .fromRGBO(
-                                                                        113,
-                                                                        113,
-                                                                        113,
-                                                                        1),
-                                                                    fontSize:
-                                                                        16,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w700,
-                                                                  )),
-                                                            ])
-                                                      ],
-                                                    ),
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment.end,
-                                                      children: [
-                                                        Text(
-                                                            spending?["date"] ??
-                                                                "8 Feb",
-                                                            style: GoogleFonts
-                                                                .montserrat(
-                                                              color: const Color
-                                                                      .fromRGBO(
-                                                                  113,
-                                                                  113,
-                                                                  113,
-                                                                  1),
-                                                              fontSize: 12,
-                                                              fontStyle:
-                                                                  FontStyle
-                                                                      .italic,
-                                                            )),
-                                                      ],
-                                                    )
-                                                  ],
-                                                )),
+                                                                Text(
+                                                                    "₹ ${spending?["debit"]! ?? ""}.00",
+                                                                    style: GoogleFonts
+                                                                        .montserrat(
+                                                                      color: const Color
+                                                                              .fromRGBO(
+                                                                          113,
+                                                                          113,
+                                                                          113,
+                                                                          1),
+                                                                      fontSize:
+                                                                          16,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w700,
+                                                                    )),
+                                                              ])
+                                                        ],
+                                                      ),
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .end,
+                                                        children: [
+                                                          Text(
+                                                              spending?[
+                                                                      "date"] ??
+                                                                  "8 Feb",
+                                                              style: GoogleFonts
+                                                                  .montserrat(
+                                                                color: const Color
+                                                                        .fromRGBO(
+                                                                    113,
+                                                                    113,
+                                                                    113,
+                                                                    1),
+                                                                fontSize: 12,
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .italic,
+                                                              )),
+                                                        ],
+                                                      )
+                                                    ],
+                                                  )),
+                                            ),
                                           ),
-                                        ),
-                                      );
-                                    }).toList());
-                                  } else {
-                                    return const Center(
-                                        child: CircularProgressIndicator());
-                                  }
-                                })),
-                          ],
+                                        );
+                                      }).toList());
+                                    } else {
+                                      return const Center(
+                                          child: CircularProgressIndicator());
+                                    }
+                                  })),
+                            ],
+                          ),
                         ),
                       ),
-                      Align(
-                        alignment: Alignment.bottomRight,
+                      Positioned(
+                        bottom: 0,
+                        right: 0,
                         child: Padding(
                             padding: const EdgeInsets.all(20),
                             child: FloatingActionButton.small(
