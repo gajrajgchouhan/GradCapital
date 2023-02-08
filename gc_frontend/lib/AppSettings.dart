@@ -80,6 +80,7 @@ class AppSettings extends InheritedWidget {
       "debit": model.debit,
       "gstNo": model.gstNo,
       "gstAmt": model.gstAmt,
+      "bill":model.bill,
     };
 
     return transcations.setValue([...transcations.getValue(), m]);

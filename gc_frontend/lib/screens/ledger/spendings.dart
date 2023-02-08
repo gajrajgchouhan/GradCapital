@@ -322,7 +322,6 @@ class _SpendingsPageState extends State<SpendingsPage>
                                   "transcations",
                                   transcations,
                                   transcations.runtimeType,
-                                  transcations.first
                                 ]);
                                 if (transcations.isNotEmpty) {
                                   return Column(
@@ -346,7 +345,17 @@ class _SpendingsPageState extends State<SpendingsPage>
                                             ),
                                             context: context,
                                             builder: (context) =>
-                                                const Transcation()),
+                                              Transcation(
+                                                title:spending?["title"],
+                                                uploader:spending?["uploader"],
+                                                vendor:spending?["vendor"],
+                                                payMethod:spending?["payMethod"],
+                                                debit:spending?["debit"],
+                                                gstNo:spending?["gstNo"],
+                                               gstAmt:spending?["gstAmt"],
+                                                bill:spending?["bill"],
+                                                )
+                                                ),
                                         child: SizedBox(
                                             height: 80,
                                             width:

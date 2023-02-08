@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:gc_frontend/read_json.dart';
-import 'package:gc_frontend/screens/ledger/transcation.dart';
-import 'package:gc_frontend/screens/ledger/group/addMember.dart';
 import 'package:gc_frontend/screens/ledger/group/inviteMemberModel.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/services.dart';
 
 class InviteMember extends StatefulWidget {
-  InviteMember({super.key});
+ const InviteMember({super.key});
 
   @override
   State<InviteMember> createState() => _InviteMemberState();
@@ -25,7 +23,8 @@ class _InviteMemberState extends State<InviteMember> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          body: Padding(
+          body: SingleChildScrollView(
+              child: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
           children: [
@@ -71,7 +70,7 @@ class _InviteMemberState extends State<InviteMember> {
             Form(
               key: _formKey,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
                       padding:
@@ -98,17 +97,6 @@ class _InviteMemberState extends State<InviteMember> {
                         },
                       )),
                   Padding(
-                      padding: const EdgeInsets.only(left: 25, top: 20),
-                      child: Column(
-                        children: [
-                          Text("UPLOAD DOCUMENTS",
-                              style: GoogleFonts.montserrat(
-                                  color:  Colors.blue,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w700))
-                        ],
-                      )),
-                  Padding(
                       padding:
                           const EdgeInsets.only(left: 25, top: 20, bottom: 20),
                       child: Row(
@@ -118,67 +106,80 @@ class _InviteMemberState extends State<InviteMember> {
                           SizedBox(
                               width: MediaQuery.of(context).size.width * .8,
                               height: MediaQuery.of(context).size.width * .3,
-                              child: Card(
-                                  shape: const RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20)),
-                                  ),
-                                  elevation: 8,
-                                  child: InkWell(
-                                    onTap: () async {
-                                      final result =
-                                          await FilePicker.platform.pickFiles();
-                                    },
-                                    child: Container(
-                                      padding: const EdgeInsets.all(20),
-                                      child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Container(
-                                                padding:
-                                                    const EdgeInsets.all(4),
-                                                decoration:  BoxDecoration(
-                                                    gradient: const LinearGradient(
-                                                      colors:  [
-                                                       Color.fromRGBO(
-                                                            115, 174, 255, 1),
-                                                        Color.fromRGBO(
-                                                            186, 211, 246, 1),
-                                                      ],
-                                                      begin: Alignment.topRight,
-                                                      end: Alignment.bottomLeft,
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                    border: Border.all(
-                                                      color:
-                                                          const Color.fromRGBO(
-                                                              66, 136, 233, 1),
-                                                      width: 2,
-                                                    )),
-                                                child: const Icon(
-                                                  Icons.image,
-                                                  color: Color.fromRGBO(
-                                                      66, 136, 233, 1),
-                                                  size: 20.0,
-                                                  weight: 10,
-                                                )),
-                                            Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 10),
-                                                child: Text("ADD BANNER",
-                                                    style:
-                                                        GoogleFonts.montserrat(
-                                                      fontSize: 10,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    )))
-                                          ]),
+                              child: InkWell(
+                                onTap: () async {
+                                  final result =
+                                      await FilePicker.platform.pickFiles();
+                                },
+                                child: Container(
+                                    padding: const EdgeInsets.all(20),
+                                    decoration: BoxDecoration(
+                                      gradient: const LinearGradient(
+                                        colors: [
+                                          Color.fromRGBO(143, 185, 245, 1),
+                                          Color.fromRGBO(186, 211, 246, 1),
+                                        ],
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomLeft,
+                                      ),
+                                      borderRadius: BorderRadius.circular(27.0),
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          color: Colors.black,
+                                          spreadRadius: -7,
+                                          blurRadius: 15,
+                                          // offset: const Offset(0, -7),
+                                        ),
+                                      ],
                                     ),
-                                  ))),
+                                    child: const Icon(
+                                      Icons.image,
+                                      color: Color.fromRGBO(66, 136, 233, 1),
+                                      size: 40.0,
+                                      weight: 10,
+                                    )),
+                              )),
                         ],
+                      )),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 0),
+                      child: Text(
+                        "ADD BANNER",
+                        style: GoogleFonts.montserrat(
+                          color: Colors.blue,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        textAlign: TextAlign.center,
+                      )),
+                  Padding(
+                      padding:
+                          const EdgeInsets.only(left: 25, top: 20, bottom: 20),
+                      child: TextFormField(
+                        decoration: const InputDecoration(
+                            prefixIcon: Icon(
+                              Icons.speaker_notes_outlined,
+                              color: Color.fromRGBO(179, 177, 177, 1),
+                              size: 30.0,
+                            ),
+                            border: UnderlineInputBorder(),
+                            labelText: 'Add a note',
+                            labelStyle: TextStyle(
+                              color: Color.fromRGBO(179, 177, 177, 1),
+                              fontWeight: FontWeight.w700,
+                              fontSize: 18,
+                              fontFamily: 'Montserrat',
+                            )),
+                        // The validator receives the text that the user has entered.
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
+                        onSaved: (value) {
+                          iModel.title = value!;
+                        },
                       )),
                   Center(
                       child: Padding(
@@ -217,9 +218,49 @@ class _InviteMemberState extends State<InviteMember> {
                           padding: const EdgeInsets.all(12),
                           width: MediaQuery.of(context).size.width * 0.7,
                           child: Text(
-                            'Send-In App Invite',
+                            'SEND-IN APP INVITE',
                             style: GoogleFonts.montserrat(
                                 fontSize: 13, fontWeight: FontWeight.w700),
+                            textAlign: TextAlign.center,
+                          )),
+                    ),
+                  )),
+                  Center(
+                      child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: TextButton(
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          await Clipboard.setData(const ClipboardData(
+                                  text: "https://www.google.com/"))
+                              .then((value) =>
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content:
+                                            Text('Copied Link to Clipboard')),
+                                  ));
+                          _formKey.currentState?.save();
+                        }
+                      },
+                      style: ButtonStyle(
+                          backgroundColor:
+                              const MaterialStatePropertyAll<Color>(
+                                  Colors.white),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20.0),
+                                      side: const BorderSide(
+                                          color: Colors.blue, width: 2)))),
+                      child: Container(
+                          padding: const EdgeInsets.all(5),
+                          width: MediaQuery.of(context).size.width * 0.73,
+                          child: Text(
+                            'GENERATE LINK',
+                            style: GoogleFonts.montserrat(
+                                color: Colors.blue,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w700),
                             textAlign: TextAlign.center,
                           )),
                     ),
@@ -229,7 +270,7 @@ class _InviteMemberState extends State<InviteMember> {
             )
           ],
         ),
-      )),
+      ))),
     );
   }
 }

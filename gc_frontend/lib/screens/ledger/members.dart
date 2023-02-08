@@ -139,32 +139,32 @@ class _MembersPageState extends State<MembersPage> {
                 ),
                 InkWell(
                     onTap: () {
-                     Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => InviteMember()),
-                        );
-                      // showModalBottomSheet(
-                      //     isScrollControlled: true,
-                      //     backgroundColor: Colors.transparent,
-                      //     shape: const RoundedRectangleBorder(
-                      //       borderRadius: BorderRadius.vertical(
-                      //         top: Radius.circular(20),
-                      //       ),
-                      //     ),
-                      //     context: context,
-                      //     // builder: (context) => const AddMember());
+                      //  Navigator.push(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //           builder: (context) => InviteMember()),
+                      //     );
+                      showModalBottomSheet(
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(20),
+                            ),
+                          ),
+                          context: context,
+                          builder: (context) => const AddMember());
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.person,
                             color: Colors.blue,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Text(
@@ -199,9 +199,9 @@ class _MembersPageState extends State<MembersPage> {
                                 children: [
                                   Row(
                                     children: [
-                                      Icon(Icons.person_3_rounded,
+                                     const Icon(Icons.person_3_rounded,
                                           color: Colors.black),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 15,
                                       ),
                                       Column(
@@ -242,15 +242,15 @@ class _MembersPageState extends State<MembersPage> {
                             ),
                             if (e["admin"]!)
                               Row(
-                                children: [
-                                  SizedBox(
+                                children: const [
+                                SizedBox(
                                     width: 10,
                                   ),
-                                  Icon(Icons.arrow_forward_ios),
+                                Icon(Icons.arrow_forward_ios),
                                 ],
                               )
                             else
-                              SizedBox(
+                             const SizedBox(
                                 width: 0,
                                 height: 0,
                               )

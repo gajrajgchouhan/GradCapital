@@ -45,6 +45,7 @@ dependencies:
   shared_preferences: ^2.0.17
   streaming_shared_preferences: ^2.0.0
   url_launcher: ^6.1.9
+  image_picker: ^0.8.6+1
 
 dev_dependencies:
   flutter_test:

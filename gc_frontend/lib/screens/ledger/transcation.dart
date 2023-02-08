@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:io';
 import 'package:badges/badges.dart' as BadgesModule;
 import 'package:flutter/material.dart';
 import 'package:gc_frontend/AppSettings.dart';
@@ -25,15 +26,30 @@ const details = ([
 ]);
 
 class Transcation extends StatefulWidget {
-  const Transcation({
-    super.key,
-  });
-
+  const Transcation(
+      {super.key,
+      required this.title,
+      required this.uploader,
+      required this.vendor,
+      required this.payMethod,
+      required this.debit,
+      required this.gstNo,
+      required this.gstAmt,
+      required this.bill});
+  final String title;
+  final String uploader;
+  final String vendor;
+  final String payMethod;
+  final String debit;
+  final String gstNo;
+  final String gstAmt;
+  final String bill;
   @override
   State<Transcation> createState() => _TranscationState();
 }
 
 class _TranscationState extends State<Transcation> {
+  @override
   @override
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(
@@ -63,7 +79,7 @@ class _TranscationState extends State<Transcation> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text("Soft Drinks",
+                  Text(widget.title,
                       style: GoogleFonts.montserrat(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -82,32 +98,78 @@ class _TranscationState extends State<Transcation> {
               const SizedBox(
                 height: 15,
               ),
-              ListView.separated(
-                itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Row(
-                      children: [
-                        Text(
-                          "${details[index]["first"]!} :  ",
-                          style: GoogleFonts.montserrat(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(details[index]["second"]!,
-                            style: GoogleFonts.montserrat(
-                              fontSize: 16,
-                            ))
-                      ],
-                    )),
-                separatorBuilder: (context, index) => const Divider(
-                  color: Color.fromRGBO(131, 183, 255, 1),
-                  height: 2,
-                ),
-                itemCount: details.length,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
+              Row(
+                children: [
+                  Text(
+                    "Uploader :",
+                    style: GoogleFonts.montserrat(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Text(widget.uploader,
+                      style: GoogleFonts.montserrat(
+                        fontSize: 16,
+                      ))
+                ],
               ),
+              const Divider(
+                  color: Color.fromRGBO(131, 183, 255, 1), thickness: 1),
+              Row(
+                children: [
+                  Text(
+                    "Vendor :",
+                    style: GoogleFonts.montserrat(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Text(widget.vendor,
+                      style: GoogleFonts.montserrat(
+                        fontSize: 16,
+                      ))
+                ],
+              ),
+              const Divider(
+                  color: Color.fromRGBO(131, 183, 255, 1), thickness: 1),
+              Row(
+                children: [
+                  Text(
+                    "Amount :",
+                    style: GoogleFonts.montserrat(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Text(widget.debit,
+                      style: GoogleFonts.montserrat(
+                        fontSize: 16,
+                      ))
+                ],
+              ),
+              const Divider(
+                  color: Color.fromRGBO(131, 183, 255, 1), thickness: 1),
+              Row(
+                children: [
+                  Text(
+                    "Payment Method :",
+                    style: GoogleFonts.montserrat(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Text(widget.payMethod,
+                      style: GoogleFonts.montserrat(
+                        fontSize: 16,
+                      ))
+                ],
+              ),
+              const Divider(
+                  color: Color.fromRGBO(131, 183, 255, 1), thickness: 1),
               const SizedBox(
                 height: 6,
               ),
@@ -134,11 +196,15 @@ class _TranscationState extends State<Transcation> {
                   // Row(
                   //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   //   children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.asset("assets/images/bill.jpg",
-                        // fit: BoxFit.cover,
-                        height: 50),
+                  Container(
+                    width: MediaQuery.of(context).size.width * .25,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    child: Image.file(
+                      File(widget.bill),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                   Card(
                       shape: const RoundedRectangleBorder(
@@ -291,6 +357,78 @@ class _TranscationState extends State<Transcation> {
               // const SizedBox(
               //   height: 15,
               // ),
+               Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 16.0),
+                                    child: ElevatedButton(
+                                      onPressed: () {},
+                                      style: ButtonStyle(
+                                          backgroundColor:
+                                              const MaterialStatePropertyAll<
+                                                  Color>(Colors.white),
+                                          shape: MaterialStateProperty.all<
+                                                  RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(28.5),
+                                          ))),
+                                      child: Container(
+                                          padding: const EdgeInsets.all(10),
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *0.23,
+                                          child: Text(
+                                            'COMMENT',
+                                            style: GoogleFonts.montserrat(
+                                                color: const Color.fromRGBO(
+                                                  113, 113, 113, 1),
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w600),
+                                            textAlign: TextAlign.center,
+                                          )),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 16.0),
+                                    child: ElevatedButton(
+                                      onPressed: () {},
+                                      style: ButtonStyle(
+                                          backgroundColor:
+                                              const MaterialStatePropertyAll<
+                                                  Color>(
+                                            Color.fromRGBO(
+                                                         244, 106, 92, 1),
+                                          ),
+                                          shape: MaterialStateProperty.all<
+                                                  RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          20.0),
+                                                 ))),
+                                      child: Container(
+                                          padding: const EdgeInsets.all(10),
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.24,
+                                          child: Text(
+                                            'FLAG',
+                                            style: GoogleFonts.montserrat(
+                                                color: Colors.white,
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w600),
+                                            textAlign: TextAlign.center,
+                                          )),
+                                    ),
+                                  )
+                                ],
+                              ),
               Container(
                 padding: const EdgeInsets.all(10),
                 // margin: const EdgeInsets.all(5),

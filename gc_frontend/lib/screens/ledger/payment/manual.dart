@@ -1,8 +1,10 @@
+import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:gc_frontend/AppSettings.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gc_frontend/screens/ledger/payment/model.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ManualEntry extends StatefulWidget {
   const ManualEntry({super.key});
@@ -20,7 +22,25 @@ class _ManualEntryState extends State<ManualEntry> {
       payMethod: '',
       debit: '500',
       gstNo: '',
-      gstAmt: '');
+      gstAmt: '',
+      bill: '');
+  late bool check = false;
+
+  /// Get from gallery
+  _getFromGallery() async {
+    PickedFile? pickedFile = await ImagePicker().getImage(
+      source: ImageSource.gallery,
+      maxWidth: 1800,
+      maxHeight: 1800,
+    );
+    if (pickedFile != null) {
+      setState(() {
+        print("setting bill to selected file");
+        model.bill = pickedFile.path;
+        print(pickedFile.path);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +92,7 @@ class _ManualEntryState extends State<ManualEntry> {
                     padding:
                         const EdgeInsets.only(left: 25, top: 20, bottom: 20),
                     child: TextFormField(
+                         controller: TextEditingController(text: "Drinks"),
                       decoration: const InputDecoration(
                           border: UnderlineInputBorder(),
                           labelText: 'Title',
@@ -95,6 +116,7 @@ class _ManualEntryState extends State<ManualEntry> {
                 Padding(
                     padding: const EdgeInsets.only(left: 25),
                     child: TextFormField(
+                            controller: TextEditingController(text: "Prati"),
                       decoration: const InputDecoration(
                           border: UnderlineInputBorder(),
                           labelText: 'Your Name',
@@ -136,60 +158,79 @@ class _ManualEntryState extends State<ManualEntry> {
                         SizedBox(
                             width: MediaQuery.of(context).size.width * .3,
                             height: MediaQuery.of(context).size.width * .3,
-                            child: Card(
-                                shape: const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20)),
-                                ),
-                                elevation: 8,
-                                child: InkWell(
-                                  onTap: () async {
-                                    final result =
-                                        await FilePicker.platform.pickFiles();
-                                  },
-                                  child: Container(
-                                    padding: const EdgeInsets.all(20),
-                                    child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                              padding: const EdgeInsets.all(4),
-                                              decoration: BoxDecoration(
-                                                  color: const Color.fromRGBO(
-                                                      255, 226, 223, 1),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                  border: Border.all(
-                                                    color: const Color.fromRGBO(
-                                                        250, 166, 158, 1),
-                                                    width: 2,
-                                                  )),
-                                              child: const Icon(
-                                                Icons.receipt,
-                                                color: Color.fromRGBO(
-                                                    250, 166, 158, 1),
-                                                size: 20.0,
-                                                weight: 10,
-                                              )),
-                                          Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 10),
-                                              child: Text("BILLS",
-                                                  style: GoogleFonts.montserrat(
-                                                      fontSize: 10,
-                                                      fontWeight:
-                                                          FontWeight.w600,
+                            child: check == false
+                                ? Card(
+                                    shape: const RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(20)),
+                                    ),
+                                    elevation: 8,
+                                    child: InkWell(
+                                      onTap: () async {
+                                        _getFromGallery();
+                                        setState(() {
+                                          check = true;
+                                        });
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.all(20),
+                                        child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                  padding:
+                                                      const EdgeInsets.all(4),
+                                                  decoration: BoxDecoration(
                                                       color:
                                                           const Color.fromRGBO(
-                                                              179,
-                                                              179,
-                                                              179,
-                                                              1))))
-                                        ]),
-                                  ),
-                                ))),
+                                                              255, 226, 223, 1),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                      border: Border.all(
+                                                        color: const Color
+                                                                .fromRGBO(
+                                                            250, 166, 158, 1),
+                                                        width: 2,
+                                                      )),
+                                                  child: const Icon(
+                                                    Icons.receipt,
+                                                    color: Color.fromRGBO(
+                                                        250, 166, 158, 1),
+                                                    size: 20.0,
+                                                    weight: 10,
+                                                  )),
+                                              Padding(
+                                                  padding: const EdgeInsets
+                                                      .only(top: 10),
+                                                  child: Text("BILLS",
+                                                      style: GoogleFonts
+                                                          .montserrat(
+                                                              fontSize: 10,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              color: const Color
+                                                                      .fromRGBO(
+                                                                  179,
+                                                                  179,
+                                                                  179,
+                                                                  1))))
+                                            ]),
+                                      ),
+                                    ))
+                                : Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * .25,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                    ),
+                                    child: Image.file(
+                                      File(model.bill),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  )),
                         SizedBox(
                             width: MediaQuery.of(context).size.width * .3,
                             height: MediaQuery.of(context).size.width * .3,
@@ -285,6 +326,7 @@ class _ManualEntryState extends State<ManualEntry> {
                 Padding(
                     padding: const EdgeInsets.only(left: 25),
                     child: TextFormField(
+                         controller: TextEditingController(text: "Trago"),
                       decoration: const InputDecoration(
                           border: UnderlineInputBorder(),
                           labelText: 'Vendor Name',
@@ -308,6 +350,7 @@ class _ManualEntryState extends State<ManualEntry> {
                 Padding(
                     padding: const EdgeInsets.only(left: 25, top: 20),
                     child: TextFormField(
+                         controller: TextEditingController(text: "Cash"),
                       decoration: const InputDecoration(
                           border: UnderlineInputBorder(),
                           labelText: 'Mode of Payment',
@@ -330,9 +373,12 @@ class _ManualEntryState extends State<ManualEntry> {
                 Padding(
                     padding: const EdgeInsets.only(left: 25, top: 20),
                     child: TextFormField(
-                      enabled: false,
+                      // enabled: false,
+                      controller: TextEditingController(text: "500"),
+
                       decoration: const InputDecoration(
                           border: UnderlineInputBorder(),
+                          // hintText: "500",
                           labelText: 'Amount (Incl. GST)',
                           labelStyle: TextStyle(
                             color: Color.fromRGBO(179, 177, 177, 1),
@@ -353,6 +399,7 @@ class _ManualEntryState extends State<ManualEntry> {
                 Padding(
                     padding: const EdgeInsets.only(left: 25, top: 20),
                     child: TextFormField(
+                         controller: TextEditingController(text: "57654982198"),
                       decoration: const InputDecoration(
                           border: UnderlineInputBorder(),
                           labelText: 'GSTIN Number',
@@ -374,8 +421,10 @@ class _ManualEntryState extends State<ManualEntry> {
                       },
                     )),
                 Padding(
+                  
                     padding: const EdgeInsets.only(left: 25, top: 20),
                     child: TextFormField(
+                         controller: TextEditingController(text: "50"),
                       decoration: const InputDecoration(
                           border: UnderlineInputBorder(),
                           labelText: 'Total GSTIN',
@@ -409,7 +458,6 @@ class _ManualEntryState extends State<ManualEntry> {
                           const SnackBar(content: Text('Processing Data')),
                         );
                         _formKey.currentState?.save();
-                        print("debugggggggg");
                         AppSettings.of(context)
                             .addTranscation(model)
                             .then((value) {
