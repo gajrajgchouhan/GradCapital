@@ -6,25 +6,6 @@ import 'package:gc_frontend/AppSettings.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
-const details = ([
-  {
-    "first": "Uploader",
-    "second": "Vatsal Hooda",
-  },
-  {
-    "first": "Vendor",
-    "second": "Monal Canteen",
-  },
-  {
-    "first": "Amount",
-    "second": "Rs. 5,500/-",
-  },
-  {
-    "first": "Payment Method",
-    "second": "Cash",
-  },
-]);
-
 class Transcation extends StatefulWidget {
   const Transcation(
       {super.key,
@@ -49,7 +30,8 @@ class Transcation extends StatefulWidget {
 }
 
 class _TranscationState extends State<Transcation> {
-  @override
+  int _flags = 5;
+  bool _flaged = false;
   @override
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(
@@ -311,7 +293,7 @@ class _TranscationState extends State<Transcation> {
                         BadgesModule.Badge(
                           position: BadgesModule.BadgePosition.topEnd(),
                           badgeContent: Text(
-                            "12",
+                            _flags.toString(),
                             style: GoogleFonts.montserrat(
                               color: Colors.white,
                               fontSize: 12,
@@ -357,78 +339,105 @@ class _TranscationState extends State<Transcation> {
               // const SizedBox(
               //   height: 15,
               // ),
-               Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 16.0),
-                                    child: ElevatedButton(
-                                      onPressed: () {},
-                                      style: ButtonStyle(
-                                          backgroundColor:
-                                              const MaterialStatePropertyAll<
-                                                  Color>(Colors.white),
-                                          shape: MaterialStateProperty.all<
-                                                  RoundedRectangleBorder>(
-                                              RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(28.5),
-                                          ))),
-                                      child: Container(
-                                          padding: const EdgeInsets.all(10),
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *0.23,
-                                          child: Text(
-                                            'COMMENT',
-                                            style: GoogleFonts.montserrat(
-                                                color: const Color.fromRGBO(
-                                                  113, 113, 113, 1),
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w600),
-                                            textAlign: TextAlign.center,
-                                          )),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 16.0),
-                                    child: ElevatedButton(
-                                      onPressed: () {},
-                                      style: ButtonStyle(
-                                          backgroundColor:
-                                              const MaterialStatePropertyAll<
-                                                  Color>(
-                                            Color.fromRGBO(
-                                                         244, 106, 92, 1),
-                                          ),
-                                          shape: MaterialStateProperty.all<
-                                                  RoundedRectangleBorder>(
-                                              RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20.0),
-                                                 ))),
-                                      child: Container(
-                                          padding: const EdgeInsets.all(10),
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.24,
-                                          child: Text(
-                                            'FLAG',
-                                            style: GoogleFonts.montserrat(
-                                                color: Colors.white,
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w600),
-                                            textAlign: TextAlign.center,
-                                          )),
-                                    ),
-                                  )
-                                ],
-                              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ButtonStyle(
+                          backgroundColor:
+                              const MaterialStatePropertyAll<Color>(
+                                  Colors.white),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(28.5),
+                          ))),
+                      child: Container(
+                          padding: const EdgeInsets.all(10),
+                          width: MediaQuery.of(context).size.width * 0.23,
+                          child: Text(
+                            'COMMENT',
+                            style: GoogleFonts.montserrat(
+                                color: const Color.fromRGBO(113, 113, 113, 1),
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600),
+                            textAlign: TextAlign.center,
+                          )),
+                    ),
+                  ),
+                  if(_flaged==false)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          _flags += 1;
+                          _flaged = true;
+                        });
+                      },
+                      style: ButtonStyle(
+                          backgroundColor:
+                              const MaterialStatePropertyAll<Color>(
+                            Color.fromRGBO(244, 106, 92, 1),
+                          ),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ))),
+                      child: Container(
+                          padding: const EdgeInsets.all(10),
+                          width: MediaQuery.of(context).size.width * 0.24,
+                          
+                          child:
+                          Text(
+                            'FLAG',
+                            style: GoogleFonts.montserrat(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600),
+                            textAlign: TextAlign.center,
+                          )),
+                    ),
+                  )else Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          _flags -= 1;
+                          _flaged = false;
+                        });
+                      },
+                      style: ButtonStyle(
+                          backgroundColor:
+                              const MaterialStatePropertyAll<Color>(
+                            Color.fromRGBO(113, 113, 113, 1),
+                          ),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ))),
+                      child: Container(
+                          padding: const EdgeInsets.all(10),
+                          width: MediaQuery.of(context).size.width * 0.24,
+                          
+                          child:
+                          Text(
+                            'UNFLAG',
+                            style: GoogleFonts.montserrat(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600),
+                            textAlign: TextAlign.center,
+                          )),
+                    ),
+                  )
+                ],
+              ),
               Container(
                 padding: const EdgeInsets.all(10),
                 // margin: const EdgeInsets.all(5),
