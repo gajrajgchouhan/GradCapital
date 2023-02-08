@@ -7,9 +7,14 @@ import 'package:gc_frontend/screens/ledger/payment/model.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ManualEntry extends StatefulWidget {
-  const ManualEntry({super.key, required this.debitAmt, required this.mode});
+  const ManualEntry(
+      {super.key,
+      required this.debitAmt,
+      required this.mode,
+      required this.qrFlow});
   final double debitAmt;
   final String mode;
+  final bool qrFlow;
 
   @override
   State<ManualEntry> createState() => _ManualEntryState();
@@ -27,6 +32,14 @@ class _ManualEntryState extends State<ManualEntry> {
       gstAmt: '',
       bill: '');
   late bool check = false;
+  bool loading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    model.debit = widget.debitAmt.toString();
+    model.payMethod = widget.mode;
+  }
 
   /// Get from gallery
   _getFromGallery() async {
@@ -94,7 +107,7 @@ class _ManualEntryState extends State<ManualEntry> {
                     padding:
                         const EdgeInsets.only(left: 25, top: 20, bottom: 20),
                     child: TextFormField(
-                      controller: TextEditingController(text: "Drinks"),
+                      controller: TextEditingController(text: model.title),
                       decoration: const InputDecoration(
                           border: UnderlineInputBorder(),
                           labelText: 'Title',
@@ -118,7 +131,7 @@ class _ManualEntryState extends State<ManualEntry> {
                 Padding(
                     padding: const EdgeInsets.only(left: 25),
                     child: TextFormField(
-                      controller: TextEditingController(text: "Prati"),
+                      controller: TextEditingController(text: "Sunil"),
                       decoration: const InputDecoration(
                           border: UnderlineInputBorder(),
                           labelText: 'Your Name',
@@ -172,6 +185,16 @@ class _ManualEntryState extends State<ManualEntry> {
                                         _getFromGallery();
                                         setState(() {
                                           check = true;
+                                          if (!widget.qrFlow) {
+                                            loading = true;
+                                            Future.delayed(
+                                                    const Duration(seconds: 5))
+                                                .then((value) {
+                                              setState(() {
+                                                loading = false;
+                                              });
+                                            });
+                                          }
                                         });
                                       },
                                       child: Container(
@@ -325,34 +348,36 @@ class _ManualEntryState extends State<ManualEntry> {
                                 ))),
                       ],
                     )),
-                Padding(
-                    padding: const EdgeInsets.only(left: 25),
-                    child: TextFormField(
-                      controller: TextEditingController(text: "Trago"),
-                      decoration: const InputDecoration(
-                          border: UnderlineInputBorder(),
-                          labelText: 'Vendor Name',
-                          labelStyle: TextStyle(
-                            color: Color.fromRGBO(179, 177, 177, 1),
-                            fontWeight: FontWeight.w700,
-                            fontSize: 14,
-                            fontFamily: 'Montserrat',
-                          )),
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        model.vendor = value!;
-                      },
-                    )),
+                (loading == true)
+                    ? const Center(child: CircularProgressIndicator())
+                    : Padding(
+                        padding: const EdgeInsets.only(left: 25),
+                        child: TextFormField(
+                          controller: TextEditingController(text: "Ravi H M"),
+                          decoration: const InputDecoration(
+                              border: UnderlineInputBorder(),
+                              labelText: 'Vendor Name',
+                              labelStyle: TextStyle(
+                                color: Color.fromRGBO(179, 177, 177, 1),
+                                fontWeight: FontWeight.w700,
+                                fontSize: 14,
+                                fontFamily: 'Montserrat',
+                              )),
+                          // The validator receives the text that the user has entered.
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                          onSaved: (value) {
+                            model.vendor = value!;
+                          },
+                        )),
                 Padding(
                     padding: const EdgeInsets.only(left: 25, top: 20),
                     child: TextFormField(
-                      controller: TextEditingController(text: widget.mode.toString()),
+                      controller: TextEditingController(text: model.payMethod),
                       decoration: const InputDecoration(
                           border: UnderlineInputBorder(),
                           labelText: 'Mode of Payment',
@@ -376,8 +401,7 @@ class _ManualEntryState extends State<ManualEntry> {
                     padding: const EdgeInsets.only(left: 25, top: 20),
                     child: TextFormField(
                       // enabled: false,
-                      controller: TextEditingController(
-                          text: widget.debitAmt.toString()),
+                      controller: TextEditingController(text: model.debit),
 
                       decoration: const InputDecoration(
                           border: UnderlineInputBorder(),
@@ -402,7 +426,7 @@ class _ManualEntryState extends State<ManualEntry> {
                 Padding(
                     padding: const EdgeInsets.only(left: 25, top: 20),
                     child: TextFormField(
-                      controller: TextEditingController(text: "57654982198"),
+                      controller: TextEditingController(text: model.gstNo),
                       decoration: const InputDecoration(
                           border: UnderlineInputBorder(),
                           labelText: 'GSTIN Number',
@@ -426,7 +450,7 @@ class _ManualEntryState extends State<ManualEntry> {
                 Padding(
                     padding: const EdgeInsets.only(left: 25, top: 20),
                     child: TextFormField(
-                      controller: TextEditingController(text: "50"),
+                      controller: TextEditingController(text: model.gstAmt),
                       decoration: const InputDecoration(
                           border: UnderlineInputBorder(),
                           labelText: 'Total GSTIN',

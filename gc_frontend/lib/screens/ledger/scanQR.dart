@@ -79,8 +79,8 @@ class _ScanQRPageState extends State<ScanQRPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>
-                              ManualEntry(debitAmt: amount, mode: "Online")),
+                          builder: (context) => ManualEntry(
+                              debitAmt: amount, mode: "Online", qrFlow: true)),
                     );
                   },
                   style: ButtonStyle(

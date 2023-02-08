@@ -60,7 +60,10 @@ class Payment extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => const ManualEntry(
-                                      debitAmt: 100, mode: "Cash")),
+                                        debitAmt: 100,
+                                        mode: "Cash",
+                                        qrFlow: false,
+                                      )),
                             );
                           },
                           child: Card(
@@ -138,7 +141,7 @@ class Payment extends StatelessWidget {
                                           )),
                                       Padding(
                                           padding: const EdgeInsets.all(10),
-                                          child: Text("MOI QR\n Scanner",
+                                          child: Text("QR\n Scanner",
                                               style: GoogleFonts.montserrat(
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w700,
