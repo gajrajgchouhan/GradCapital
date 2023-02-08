@@ -7,7 +7,9 @@ import 'package:gc_frontend/screens/ledger/payment/model.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ManualEntry extends StatefulWidget {
-  const ManualEntry({super.key});
+  const ManualEntry({super.key, required this.debitAmt, required this.mode});
+  final double debitAmt;
+  final String mode;
 
   @override
   State<ManualEntry> createState() => _ManualEntryState();
@@ -92,7 +94,7 @@ class _ManualEntryState extends State<ManualEntry> {
                     padding:
                         const EdgeInsets.only(left: 25, top: 20, bottom: 20),
                     child: TextFormField(
-                         controller: TextEditingController(text: "Drinks"),
+                      controller: TextEditingController(text: "Drinks"),
                       decoration: const InputDecoration(
                           border: UnderlineInputBorder(),
                           labelText: 'Title',
@@ -116,7 +118,7 @@ class _ManualEntryState extends State<ManualEntry> {
                 Padding(
                     padding: const EdgeInsets.only(left: 25),
                     child: TextFormField(
-                            controller: TextEditingController(text: "Prati"),
+                      controller: TextEditingController(text: "Prati"),
                       decoration: const InputDecoration(
                           border: UnderlineInputBorder(),
                           labelText: 'Your Name',
@@ -326,7 +328,7 @@ class _ManualEntryState extends State<ManualEntry> {
                 Padding(
                     padding: const EdgeInsets.only(left: 25),
                     child: TextFormField(
-                         controller: TextEditingController(text: "Trago"),
+                      controller: TextEditingController(text: "Trago"),
                       decoration: const InputDecoration(
                           border: UnderlineInputBorder(),
                           labelText: 'Vendor Name',
@@ -350,7 +352,7 @@ class _ManualEntryState extends State<ManualEntry> {
                 Padding(
                     padding: const EdgeInsets.only(left: 25, top: 20),
                     child: TextFormField(
-                         controller: TextEditingController(text: "Cash"),
+                      controller: TextEditingController(text: widget.mode.toString()),
                       decoration: const InputDecoration(
                           border: UnderlineInputBorder(),
                           labelText: 'Mode of Payment',
@@ -374,7 +376,8 @@ class _ManualEntryState extends State<ManualEntry> {
                     padding: const EdgeInsets.only(left: 25, top: 20),
                     child: TextFormField(
                       // enabled: false,
-                      controller: TextEditingController(text: "500"),
+                      controller: TextEditingController(
+                          text: widget.debitAmt.toString()),
 
                       decoration: const InputDecoration(
                           border: UnderlineInputBorder(),
@@ -399,7 +402,7 @@ class _ManualEntryState extends State<ManualEntry> {
                 Padding(
                     padding: const EdgeInsets.only(left: 25, top: 20),
                     child: TextFormField(
-                         controller: TextEditingController(text: "57654982198"),
+                      controller: TextEditingController(text: "57654982198"),
                       decoration: const InputDecoration(
                           border: UnderlineInputBorder(),
                           labelText: 'GSTIN Number',
@@ -421,10 +424,9 @@ class _ManualEntryState extends State<ManualEntry> {
                       },
                     )),
                 Padding(
-                  
                     padding: const EdgeInsets.only(left: 25, top: 20),
                     child: TextFormField(
-                         controller: TextEditingController(text: "50"),
+                      controller: TextEditingController(text: "50"),
                       decoration: const InputDecoration(
                           border: UnderlineInputBorder(),
                           labelText: 'Total GSTIN',

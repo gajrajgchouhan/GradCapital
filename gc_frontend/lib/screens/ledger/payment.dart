@@ -58,7 +58,7 @@ class Payment extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const ManualEntry()),
+                                  builder: (context) => const ManualEntry(debitAmt: 100,mode:"Cash")),
                             );
                           },
                           child: Card(
