@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gc_frontend/read_json.dart';
+import 'package:gc_frontend/screens/ledger/group/inviteMember.dart';
 import 'package:gc_frontend/screens/ledger/transcation.dart';
 import 'package:gc_frontend/screens/ledger/group/addMember.dart';
+import 'package:gc_frontend/screens/ledger/group/inviteMember.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MembersPage extends StatefulWidget {
@@ -137,16 +139,21 @@ class _MembersPageState extends State<MembersPage> {
                 ),
                 InkWell(
                     onTap: () {
-                      showModalBottomSheet(
-                          isScrollControlled: true,
-                          backgroundColor: Colors.transparent,
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(20),
-                            ),
-                          ),
-                          context: context,
-                          builder: (context) => const AddMember());
+                     Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => InviteMember()),
+                        );
+                      // showModalBottomSheet(
+                      //     isScrollControlled: true,
+                      //     backgroundColor: Colors.transparent,
+                      //     shape: const RoundedRectangleBorder(
+                      //       borderRadius: BorderRadius.vertical(
+                      //         top: Radius.circular(20),
+                      //       ),
+                      //     ),
+                      //     context: context,
+                      //     // builder: (context) => const AddMember());
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
