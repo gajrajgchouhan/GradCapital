@@ -409,7 +409,14 @@ class _ManualEntryState extends State<ManualEntry> {
                         );
                         _formKey.currentState?.save();
                         print("debugggggggg");
-                        AppSettings.of(context).addTranscation(model);
+                        AppSettings.of(context).addTranscation(model).then((value) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Saved!')),
+                        );
+                         
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        });
                       }
                     },
                     style: ButtonStyle(

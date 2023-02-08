@@ -304,177 +304,181 @@ class _SpendingsPageState extends State<SpendingsPage>
                   elevation: 8,
                   color: const Color.fromRGBO(240, 240, 240, 1),
                   // child: Expanded(
-                  child: SingleChildScrollView(
-                    child:Column(
+                  child: Column(
                     children: [
-                      // Positioned(
-                      //     bottom: 20,
-                      //     right: 20,
-                      //     child:
-                           FloatingActionButton.small(
-                            onPressed: () => {
-                              showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  backgroundColor: Colors.transparent,
-                                  shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.vertical(
-                                      top: Radius.circular(20),
-                                    ),
-                                  ),
-                                  context: context,
-                                  builder: (context) => const Payment()),
-                            },
-                            backgroundColor:
-                                const Color.fromRGBO(244, 92, 92, 1),
-                            shape: const RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                            ),
-                            hoverColor: const Color.fromARGB(255, 231, 53, 53),
-                            child: const Icon(Icons.add, size: 20),
-                          // )
-                          ),
-                      //     PreferenceBuilder(
-                      // preference: AppSettings.of(context).transcations,
-                      // builder: (context, transcations) {
-                      // }
-                      //   )
-                      PreferenceBuilder(  
-                          preference: AppSettings.of(context).transcations,
-                          builder: ((context, transcations) {
-                            print([
-                              "transcations",
-                              transcations,
-                              transcations.runtimeType,
-                              transcations.first
-                            ]);
-                            if (transcations.isNotEmpty) {
-                              return Column(
-                                  children: transcations.map((spending) {
-                                    print("spendingggg");
-                                    print(spending);
-                                return Container(
-                                  margin: const EdgeInsets.only(top: 10),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                    color: Colors.white,
-                                  ),
-                                  child: InkWell(
-                                    onTap: () => showModalBottomSheet(
-                                        isScrollControlled: true,
-                                        backgroundColor: Colors.transparent,
-                                        shape: const RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.vertical(
-                                            top: Radius.circular(20),
-                                          ),
-                                        ),
-                                        context: context,
-                                        builder: (context) =>
-                                            const Transcation()),
-                                    child: SizedBox(
-                                        height: 80,
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.95,
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: <Widget>[
-                                            ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(7.0),
-                                              child: Image.network(
-                                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGL98ush_JVAtrRt7HMg-uf0tD51kRZBYG0A&usqp=CAU",
-                                                height: 50.0,
+                      Expanded(
+                        child: Column(
+                        children: [
+                               
+                          //     PreferenceBuilder(
+                          // preference: AppSettings.of(context).transcations,
+                          // builder: (context, transcations) {
+                          // }
+                          //   )
+                          PreferenceBuilder(  
+                              preference: AppSettings.of(context).transcations,
+                              builder: ((context, transcations) {
+                                print([
+                                  "transcations",
+                                  transcations,
+                                  transcations.runtimeType,
+                                  transcations.first
+                                ]);
+                                if (transcations.isNotEmpty) {
+                                  return Column(
+                                      children: transcations.map((spending) {
+                                        print("spendingggg");
+                                        print(spending);
+                                    return Container(
+                                      margin: const EdgeInsets.only(top: 10),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20.0),
+                                        color: Colors.white,
+                                      ),
+                                      child: InkWell(
+                                        onTap: () => showModalBottomSheet(
+                                            isScrollControlled: true,
+                                            backgroundColor: Colors.transparent,
+                                            shape: const RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.vertical(
+                                                top: Radius.circular(20),
                                               ),
                                             ),
-                                            Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 15, top: 20),
-                                                    child: Text(
-                                                        spending?["title"]!?? "",
-                                                        style: GoogleFonts
-                                                            .montserrat(
-                                                          color: const Color
-                                                                  .fromRGBO(
-                                                              54, 54, 54, 1),
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          fontSize: 18,
-                                                        ),
-                                                        textAlign:
-                                                            TextAlign.left),
+                                            context: context,
+                                            builder: (context) =>
+                                                const Transcation()),
+                                        child: SizedBox(
+                                            height: 80,
+                                            width:
+                                                MediaQuery.of(context).size.width *
+                                                    0.95,
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceAround,
+                                              children: <Widget>[
+                                                ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(7.0),
+                                                  child: Image.network(
+                                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGL98ush_JVAtrRt7HMg-uf0tD51kRZBYG0A&usqp=CAU",
+                                                    height: 50.0,
                                                   ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 15),
-                                                    child: Text(
-                                                        spending?["vendor"]!?? "",
-                                                        style: GoogleFonts
-                                                            .montserrat(
-                                                          color: const Color
-                                                                  .fromRGBO(
-                                                              54, 54, 54, 1),
-                                                          fontWeight:
-                                                              FontWeight.w300,
-                                                          fontSize: 14,
-                                                        ),
-                                                        textAlign:
-                                                            TextAlign.left),
-                                                  ),
-                                                ]),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.end,
-                                                  children: [
-                                                    Text(spending?["debit"]!?? "",
-                                                        style: GoogleFonts
-                                                            .montserrat(
-                                                          color: const Color
-                                                                  .fromRGBO(
-                                                              113, 113, 113, 1),
-                                                          fontSize: 16,
-                                                          fontWeight:
-                                                              FontWeight.w700,
-                                                        )),
-                                                    Text("27 Jan",
-                                                        style: GoogleFonts
-                                                            .montserrat(
-                                                          color: const Color
-                                                                  .fromRGBO(
-                                                              113, 113, 113, 1),
-                                                          fontSize: 12,
-                                                          fontStyle:
-                                                              FontStyle.italic,
-                                                        ))
-                                                  ]),
-                                            )
-                                          ],
-                                        )),
-                                  ),
-                                );
-                              }).toList());
-                            } else {
-                              return const Center(
-                                  child: CircularProgressIndicator());
-                            }
-                          })),
+                                                ),
+                                                Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.start,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets.only(
+                                                                left: 15, top: 20),
+                                                        child: Text(
+                                                            spending?["title"]!?? "",
+                                                            style: GoogleFonts
+                                                                .montserrat(
+                                                              color: const Color
+                                                                      .fromRGBO(
+                                                                  54, 54, 54, 1),
+                                                              fontWeight:
+                                                                  FontWeight.w600,
+                                                              fontSize: 18,
+                                                            ),
+                                                            textAlign:
+                                                                TextAlign.left),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets.only(
+                                                                left: 15),
+                                                        child: Text(
+                                                            spending?["vendor"]!?? "",
+                                                            style: GoogleFonts
+                                                                .montserrat(
+                                                              color: const Color
+                                                                      .fromRGBO(
+                                                                  54, 54, 54, 1),
+                                                              fontWeight:
+                                                                  FontWeight.w300,
+                                                              fontSize: 14,
+                                                            ),
+                                                            textAlign:
+                                                                TextAlign.left),
+                                                      ),
+                                                    ]),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment.end,
+                                                      children: [
+                                                        Text(spending?["debit"]!?? "",
+                                                            style: GoogleFonts
+                                                                .montserrat(
+                                                              color: const Color
+                                                                      .fromRGBO(
+                                                                  113, 113, 113, 1),
+                                                              fontSize: 16,
+                                                              fontWeight:
+                                                                  FontWeight.w700,
+                                                            )),
+                                                        Text("27 Jan",
+                                                            style: GoogleFonts
+                                                                .montserrat(
+                                                              color: const Color
+                                                                      .fromRGBO(
+                                                                  113, 113, 113, 1),
+                                                              fontSize: 12,
+                                                              fontStyle:
+                                                                  FontStyle.italic,
+                                                            ))
+                                                      ]),
+                                                )
+                                              ],
+                                            )),
+                                      ),
+                                    );
+                                  }).toList());
+                                } else {
+                                  return const Center(
+                                      child: CircularProgressIndicator());
+                                }
+                              })),
+                        ],
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: FloatingActionButton.small(
+                              onPressed: () => {
+                                showModalBottomSheet(
+                                    isScrollControlled: true,
+                                    backgroundColor: Colors.transparent,
+                                    shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.vertical(
+                                        top: Radius.circular(20),
+                                      ),
+                                    ),
+                                    context: context,
+                                    builder: (context) => const Payment()),
+                              },
+                              backgroundColor:
+                                  const Color.fromRGBO(244, 92, 92, 1),
+                              shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                              ),
+                              hoverColor: const Color.fromARGB(255, 231, 53, 53),
+                              child: const Icon(Icons.add, size: 20),
+                            ),
+                      ),
                     ],
-                  )),
+                  ),
                 ),
                 Card(
                   shape: const RoundedRectangleBorder(
