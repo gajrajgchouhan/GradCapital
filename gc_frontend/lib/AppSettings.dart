@@ -70,15 +70,15 @@ class AppSettings extends InheritedWidget {
             defaultValue: [
               {
                 "title": "Soft Drinks",
-                "uploader": "",
+                "uploader": "Vatsal Hooda",
                 "vendor": "Monal Canteen",
-                "payMethod": "",
+                "payMethod": "Cash",
                 "debit": "5,500",
                 "gstNo": "",
                 "gstAmt": "",
                 "date": "02 Feb",
                 "flags": 12,
-                "img": "restaurant",
+                "img": "assets/images/a.png",
               },
               {
                 "title": "DJ Remaining",
@@ -90,7 +90,7 @@ class AppSettings extends InheritedWidget {
                 "gstAmt": "",
                 "date": "01 Feb",
                 "flags": 3,
-                "img": "equalizer",
+                "img": "assets/images/b.png",
               },
               {
                 "title": "Decoration",
@@ -102,7 +102,7 @@ class AppSettings extends InheritedWidget {
                 "gstAmt": "",
                 "date": "27 Jan",
                 "flags": 0,
-                "img": "celebration",
+                "img": "assets/images/c.png",
               },
               // {
               //   "title": "Snacks",

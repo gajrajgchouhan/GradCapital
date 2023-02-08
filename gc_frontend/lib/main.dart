@@ -30,6 +30,8 @@ class MyApp extends StatelessWidget {
         preferences: _preferences,
         child: Builder(builder: (context) {
           return const MaterialApp(
+            // debugShowCheckedModeBanner: false,
+            // debugShowMaterialGrid: false,
             title: _title,
             home: HomePage(),
           );

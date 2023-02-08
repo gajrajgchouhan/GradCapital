@@ -266,7 +266,7 @@ class _TranscationState extends State<Transcation> {
                         BadgesModule.Badge(
                           position: BadgesModule.BadgePosition.topEnd(),
                           badgeContent: Text(
-                            "7",
+                            "2",
                             style: GoogleFonts.montserrat(
                               color: Colors.white,
                               fontSize: 12,
@@ -322,21 +322,10 @@ class _TranscationState extends State<Transcation> {
                   ),
 
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(2, 20, 4, 20),
-                    child: Column(children: [
-                      const Icon(Icons.circle_outlined,
-                          size: 30, color: Color.fromRGBO(113, 113, 113, 1)),
-                      const SizedBox(height: 5),
-                      Text(
-                        "AUTHENTICITY\n SCORE",
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.montserrat(
-                          color: const Color.fromRGBO(113, 113, 113, 1),
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      )
-                    ]),
+                    padding: const EdgeInsets.fromLTRB(5, 0, 5, 30),
+                    child: Image.asset(
+                      "assets/images/auth.png",
+                    ),
                   ),
                 ],
               ),
@@ -347,7 +336,7 @@ class _TranscationState extends State<Transcation> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    padding: const EdgeInsets.symmetric(vertical: 0),
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ButtonStyle(
@@ -360,7 +349,6 @@ class _TranscationState extends State<Transcation> {
                             borderRadius: BorderRadius.circular(28.5),
                           ))),
                       child: Container(
-                          padding: const EdgeInsets.all(10),
                           width: MediaQuery.of(context).size.width * 0.23,
                           child: Text(
                             'COMMENT',
@@ -374,7 +362,7 @@ class _TranscationState extends State<Transcation> {
                   ),
                   if (_flaged == false)
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      padding: const EdgeInsets.symmetric(vertical: 0),
                       child: ElevatedButton(
                         onPressed: () {
                           setState(() {
@@ -406,7 +394,7 @@ class _TranscationState extends State<Transcation> {
                     )
                   else
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      padding: const EdgeInsets.symmetric(vertical: 0),
                       child: ElevatedButton(
                         onPressed: () {
                           setState(() {
@@ -437,6 +425,9 @@ class _TranscationState extends State<Transcation> {
                       ),
                     )
                 ],
+              ),
+              SizedBox(
+                height: 10,
               ),
               Container(
                 padding: const EdgeInsets.all(10),
@@ -476,6 +467,9 @@ class _TranscationState extends State<Transcation> {
                       thickness: 2,
                       indent: 5,
                       endIndent: 5,
+                    ),
+                    SizedBox(
+                      height: 10,
                     ),
                     Row(
                       children: [
@@ -518,9 +512,43 @@ class _TranscationState extends State<Transcation> {
                                       fontStyle: FontStyle.italic,
                                     ))
                               ]),
-                        )
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
                       ],
-                    )
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    RichText(
+                        text: TextSpan(
+                            text: "Aman Singh ",
+                            style: GoogleFonts.montserrat(
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromRGBO(54, 54, 54, 1)),
+                            children: [
+                          TextSpan(
+                            text:
+                                "Can you please upload a clearer bill, this bill is blurred",
+                            style: GoogleFonts.montserrat(
+                                color: Color.fromRGBO(113, 113, 113, 1)),
+                          ),
+                        ])),
+                    RichText(
+                        text: TextSpan(
+                            text: "Shubham Prajapati ",
+                            style: GoogleFonts.montserrat(
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromRGBO(54, 54, 54, 1)),
+                            children: [
+                          TextSpan(
+                            text:
+                                "This is an unnecessary spend and can be avoided",
+                            style: GoogleFonts.montserrat(
+                                color: Color.fromRGBO(113, 113, 113, 1)),
+                          ),
+                        ]))
                   ],
                 ),
               )

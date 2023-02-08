@@ -116,7 +116,7 @@ class _SpendingsPageState extends State<SpendingsPage>
                                     ))),
                             Padding(
                                 padding: const EdgeInsets.only(bottom: 15),
-                                child: Text("9,700",
+                                child: Text("49,700",
                                     style: GoogleFonts.montserrat(
                                       color:
                                           const Color.fromRGBO(54, 54, 54, 1),
@@ -253,22 +253,24 @@ class _SpendingsPageState extends State<SpendingsPage>
                 );
               },
               unselectedLabelColor: Colors.grey.shade700,
+              indicator: BoxDecoration(
+                  border: Border(
+                      top: BorderSide(
+                          color: const Color.fromRGBO(244, 92, 92, 1),
+                          width: 3.0))),
               indicatorColor: const Color.fromRGBO(244, 92, 92, 1),
               indicatorWeight: 2.0,
               labelColor: Colors.black,
               controller: _tabController,
-              tabs: const [
+              tabs: [
                 Tab(
-                  child: Icon(
-                    Icons.circle_notifications_outlined,
-                    size: 30,
-                  ),
+                  child: Image.asset("assets/images/d.png", width: 30),
                 ),
                 Tab(
                   child: Icon(Icons.receipt_long),
                 ),
                 Tab(
-                  child: Icon(Icons.monetization_on_outlined),
+                  child: Image.asset("assets/images/f.png", width: 30),
                 ),
               ],
               indicatorSize: TabBarIndicatorSize.tab,
@@ -311,6 +313,7 @@ class _SpendingsPageState extends State<SpendingsPage>
                         child: Expanded(
                           child: Column(
                             children: [
+                              Image.asset("assets/images/g.png"),
                               PreferenceBuilder(
                                   preference:
                                       AppSettings.of(context).transcations,
@@ -383,12 +386,11 @@ class _SpendingsPageState extends State<SpendingsPage>
                                                             MainAxisAlignment
                                                                 .spaceAround,
                                                         children: <Widget>[
-                                                          DynamicIcons
-                                                              .getIconFromName(
-                                                                  spending?[
-                                                                          "img"] ??
-                                                                      "restaurant",
-                                                                  size: 40)!,
+                                                          Image.asset(
+                                                            spending?["img"] ??
+                                                                "assets/images/a.png",
+                                                            width: 50,
+                                                          ),
                                                           Expanded(
                                                             child: Column(
                                                                 crossAxisAlignment:

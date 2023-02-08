@@ -38,6 +38,7 @@ class Payment extends StatelessWidget {
                 Padding(
                     padding: const EdgeInsets.all(17),
                     child: Text("Select Payment\n Method",
+                        textAlign: TextAlign.left,
                         style: GoogleFonts.montserrat(
                             fontSize: 32,
                             fontWeight: FontWeight.w600,
@@ -58,7 +59,8 @@ class Payment extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const ManualEntry(debitAmt: 100,mode:"Cash")),
+                                  builder: (context) => const ManualEntry(
+                                      debitAmt: 100, mode: "Cash")),
                             );
                           },
                           child: Card(

@@ -63,14 +63,14 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter_native_splash:
-  color: "#F3B5A2"
-  color_dark: "#F3B5A2"
+  color: "#565555"
+  color_dark: "#565555"
   image: assets/images/startup_screen.png
   image_dark: assets/images/startup_screen.png
 
   android_12:
-    icon_background_color: "#F3B5A2"
-    icon_background_color_dark: "#F3B5A2"
+    icon_background_color: "#565555"
+    icon_background_color_dark: "#565555"
     image: assets/images/startup_screen.png
     image_dark: assets/images/startup_screen.png
 
@@ -90,9 +90,7 @@ flutter:
     - assets/data/allmember.json
     - assets/data/ledgers.json
     - assets/data/spendings.json
-    - assets/images/bill.jpg
-    - assets/images/notif.jpg
-    - assets/images/startup_screen.png 
+    - assets/images/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
