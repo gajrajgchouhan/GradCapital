@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:gc_frontend/screens/ledger/payment/manual.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -75,6 +76,19 @@ class _ScanQRPageState extends State<ScanQRPage> {
                 if (!await launchUrlString("$codeSanner&am=$amount")) {
                   throw Exception('Invalid UPI');
                 }
+                 Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ManualEntry()),
+                            );
+                // else{
+                //    // ignore: use_build_context_synchronously
+                //    Navigator.push(
+                //               context,
+                //               MaterialPageRoute(
+                //                   builder: (context) => const ManualEntry()),
+                //             );
+                // }
               },
               style: ButtonStyle(
                   backgroundColor: const MaterialStatePropertyAll<Color>(

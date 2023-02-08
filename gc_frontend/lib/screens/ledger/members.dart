@@ -60,11 +60,19 @@ class _MembersPageState extends State<MembersPage> {
                         )),
                   ]),
             ),
+            const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.all(12),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(25.0),
+                    child: Image.network(
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgIWwryUUArHF_DWOh2Xxkg_X96SC-BbMiWp1DrNTYgpBH7AJ3G8q_w_XjKdAJSLh4pW0&usqp=CAU",
+                      height: 50.0,
+                    ),
+                  ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -74,6 +82,7 @@ class _MembersPageState extends State<MembersPage> {
                           fontSize: 14,
                         ),
                       ),
+                      const SizedBox(height: 10),
                       Text(
                         "Freshers' Party 22",
                         style: GoogleFonts.montserrat(
@@ -88,12 +97,13 @@ class _MembersPageState extends State<MembersPage> {
                     style: GoogleFonts.montserrat(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
-                      color: Colors.red,
+                      color: const Color.fromRGBO(247, 152, 143, 1),
                     ),
                   )
                 ],
               ),
             ),
+            const Divider(color: Color.fromRGBO(217, 217, 217, 1)),
             Padding(
               padding: const EdgeInsets.all(12),
               child: Row(
@@ -106,7 +116,7 @@ class _MembersPageState extends State<MembersPage> {
                       fontSize: 16,
                     ),
                   ),
-                  InkWell(
+                  const InkWell(
                     onTap: null,
                     child: Icon(Icons.search),
                   )
@@ -120,11 +130,11 @@ class _MembersPageState extends State<MembersPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.person_add,
                         color: Colors.red,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Text(
@@ -179,6 +189,7 @@ class _MembersPageState extends State<MembersPage> {
                     )),
               ],
             ),
+           const SizedBox(height:15),
             FutureBuilder(
                 future: readJson("assets/data/members.json"),
                 builder: ((context, snapshot) {
@@ -199,7 +210,7 @@ class _MembersPageState extends State<MembersPage> {
                                 children: [
                                   Row(
                                     children: [
-                                     const Icon(Icons.person_3_rounded,
+                                      const Icon(Icons.person_3_rounded,
                                           color: Colors.black),
                                       const SizedBox(
                                         width: 15,
@@ -243,14 +254,14 @@ class _MembersPageState extends State<MembersPage> {
                             if (e["admin"]!)
                               Row(
                                 children: const [
-                                SizedBox(
+                                  SizedBox(
                                     width: 10,
                                   ),
-                                Icon(Icons.arrow_forward_ios),
+                                  Icon(Icons.arrow_forward_ios),
                                 ],
                               )
                             else
-                             const SizedBox(
+                              const SizedBox(
                                 width: 0,
                                 height: 0,
                               )
