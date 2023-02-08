@@ -6,6 +6,7 @@ import 'package:gc_frontend/screens/ledger/transcation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gc_frontend/read_json.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
+import 'package:dynamic_icons/dynamic_icons.dart';
 
 class SpendingsPage extends StatefulWidget {
   const SpendingsPage({super.key});
@@ -360,135 +361,143 @@ class _SpendingsPageState extends State<SpendingsPage>
                                                     gstAmt: spending?["gstAmt"],
                                                     bill: spending?["bill"],
                                                   )),
-                                          child: SizedBox(
-                                              height: 80,
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.95,
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.min,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceAround,
-                                                children: <Widget>[
-                                                  ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            7.0),
-                                                    child: Image.network(
-                                                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGL98ush_JVAtrRt7HMg-uf0tD51kRZBYG0A&usqp=CAU",
-                                                      height: 50.0,
-                                                    ),
-                                                  ),
-                                                  Column(
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: SizedBox(
+                                                height: 85,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.95,
+                                                child: Column(
+                                                  children: [
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
                                                       crossAxisAlignment:
                                                           CrossAxisAlignment
-                                                              .start,
+                                                              .end,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceAround,
+                                                      children: <Widget>[
+                                                        DynamicIcons
+                                                            .getIconFromName(
+                                                                spending?[
+                                                                        "img"] ??
+                                                                    "restaurant",
+                                                                size: 40)!,
+                                                        Expanded(
+                                                          child: Column(
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: const EdgeInsets
+                                                                          .only(
+                                                                      left: 15,
+                                                                      top: 20),
+                                                                  child: Text(
+                                                                      spending?[
+                                                                              "title"]! ??
+                                                                          "",
+                                                                      style: GoogleFonts
+                                                                          .montserrat(
+                                                                        color: const Color.fromRGBO(
+                                                                            54,
+                                                                            54,
+                                                                            54,
+                                                                            1),
+                                                                        fontWeight:
+                                                                            FontWeight.w600,
+                                                                        fontSize:
+                                                                            18,
+                                                                      ),
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .left),
+                                                                ),
+                                                                Padding(
+                                                                  padding: const EdgeInsets
+                                                                          .only(
+                                                                      left: 15),
+                                                                  child: Text(
+                                                                      spending?[
+                                                                              "vendor"]! ??
+                                                                          "",
+                                                                      style: GoogleFonts
+                                                                          .montserrat(
+                                                                        color: const Color.fromRGBO(
+                                                                            54,
+                                                                            54,
+                                                                            54,
+                                                                            1),
+                                                                        fontWeight:
+                                                                            FontWeight.w300,
+                                                                        fontSize:
+                                                                            14,
+                                                                      ),
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .left),
+                                                                ),
+                                                              ]),
+                                                        ),
+                                                        Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .end,
+                                                            children: [
+                                                              Text(
+                                                                  "₹ ${spending?["debit"]! ?? ""}.00",
+                                                                  style: GoogleFonts
+                                                                      .montserrat(
+                                                                    color: const Color
+                                                                            .fromRGBO(
+                                                                        113,
+                                                                        113,
+                                                                        113,
+                                                                        1),
+                                                                    fontSize:
+                                                                        16,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w700,
+                                                                  )),
+                                                            ])
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
                                                       children: [
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  left: 15,
-                                                                  top: 20),
-                                                          child: Text(
-                                                              spending?[
-                                                                      "title"]! ??
-                                                                  "",
-                                                              style: GoogleFonts
-                                                                  .montserrat(
-                                                                color: const Color
-                                                                        .fromRGBO(
-                                                                    54,
-                                                                    54,
-                                                                    54,
-                                                                    1),
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontSize: 18,
-                                                              ),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .left),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  left: 15),
-                                                          child: Text(
-                                                              spending?[
-                                                                      "vendor"]! ??
-                                                                  "",
-                                                              style: GoogleFonts
-                                                                  .montserrat(
-                                                                color: const Color
-                                                                        .fromRGBO(
-                                                                    54,
-                                                                    54,
-                                                                    54,
-                                                                    1),
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w300,
-                                                                fontSize: 14,
-                                                              ),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .left),
-                                                        ),
-                                                      ]),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            8.0),
-                                                    child: Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .end,
-                                                        children: [
-                                                          Text(
-                                                              spending?[
-                                                                      "debit"]! ??
-                                                                  "",
-                                                              style: GoogleFonts
-                                                                  .montserrat(
-                                                                color: const Color
-                                                                        .fromRGBO(
-                                                                    113,
-                                                                    113,
-                                                                    113,
-                                                                    1),
-                                                                fontSize: 16,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w700,
-                                                              )),
-                                                          Text("27 Jan",
-                                                              style: GoogleFonts
-                                                                  .montserrat(
-                                                                color: const Color
-                                                                        .fromRGBO(
-                                                                    113,
-                                                                    113,
-                                                                    113,
-                                                                    1),
-                                                                fontSize: 12,
-                                                                fontStyle:
-                                                                    FontStyle
-                                                                        .italic,
-                                                              ))
-                                                        ]),
-                                                  )
-                                                ],
-                                              )),
+                                                        Text(
+                                                            spending?["date"] ??
+                                                                "8 Feb",
+                                                            style: GoogleFonts
+                                                                .montserrat(
+                                                              color: const Color
+                                                                      .fromRGBO(
+                                                                  113,
+                                                                  113,
+                                                                  113,
+                                                                  1),
+                                                              fontSize: 12,
+                                                              fontStyle:
+                                                                  FontStyle
+                                                                      .italic,
+                                                            )),
+                                                      ],
+                                                    )
+                                                  ],
+                                                )),
+                                          ),
                                         ),
                                       );
                                     }).toList());

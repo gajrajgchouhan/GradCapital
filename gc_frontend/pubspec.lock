@@ -105,6 +105,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  dynamic_icons:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: master
+      resolved-ref: d67cfb463ef084d120dff4cf93e2b5b35da86a4a
+      url: "https://github.com/gajrajgchouhan/dynamic_icon_gajraj/"
+    source: git
+    version: "0.0.2"
   fake_async:
     dependency: transitive
     description:
@@ -184,6 +193,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  font_awesome_flutter:
+    dependency: transitive
+    description:
+      name: font_awesome_flutter
+      sha256: "875dbb9ec1ad30d68102019ceb682760d06c72747c1c5b7885781b95f88569cc"
+      url: "https://pub.dev"
+    source: hosted
+    version: "10.3.0"
   google_fonts:
     dependency: "direct main"
     description:

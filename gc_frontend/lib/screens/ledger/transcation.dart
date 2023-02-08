@@ -24,7 +24,7 @@ class Transcation extends StatefulWidget {
   final String debit;
   final String gstNo;
   final String gstAmt;
-  final String bill;
+  final String? bill;
   @override
   State<Transcation> createState() => _TranscationState();
 }
@@ -183,10 +183,14 @@ class _TranscationState extends State<Transcation> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    child: Image.file(
-                      File(widget.bill),
-                      fit: BoxFit.cover,
-                    ),
+                    child: widget.bill == null
+                        ? Image.asset("assets/images/bill.jpg",
+                            // fit: BoxFit.cover,
+                            height: 50)
+                        : Image.file(
+                            File(widget.bill!),
+                            fit: BoxFit.cover,
+                          ),
                   ),
                   Card(
                       shape: const RoundedRectangleBorder(
@@ -368,74 +372,70 @@ class _TranscationState extends State<Transcation> {
                           )),
                     ),
                   ),
-                  if(_flaged==false)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          _flags += 1;
-                          _flaged = true;
-                        });
-                      },
-                      style: ButtonStyle(
-                          backgroundColor:
-                              const MaterialStatePropertyAll<Color>(
-                            Color.fromRGBO(244, 106, 92, 1),
-                          ),
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ))),
-                      child: Container(
-                          padding: const EdgeInsets.all(10),
-                          width: MediaQuery.of(context).size.width * 0.24,
-                          
-                          child:
-                          Text(
-                            'FLAG',
-                            style: GoogleFonts.montserrat(
-                                color: Colors.white,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600),
-                            textAlign: TextAlign.center,
-                          )),
-                    ),
-                  )else Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          _flags -= 1;
-                          _flaged = false;
-                        });
-                      },
-                      style: ButtonStyle(
-                          backgroundColor:
-                              const MaterialStatePropertyAll<Color>(
-                            Color.fromRGBO(113, 113, 113, 1),
-                          ),
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ))),
-                      child: Container(
-                          padding: const EdgeInsets.all(10),
-                          width: MediaQuery.of(context).size.width * 0.24,
-                          
-                          child:
-                          Text(
-                            'UNFLAG',
-                            style: GoogleFonts.montserrat(
-                                color: Colors.white,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600),
-                            textAlign: TextAlign.center,
-                          )),
-                    ),
-                  )
+                  if (_flaged == false)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            _flags += 1;
+                            _flaged = true;
+                          });
+                        },
+                        style: ButtonStyle(
+                            backgroundColor:
+                                const MaterialStatePropertyAll<Color>(
+                              Color.fromRGBO(244, 106, 92, 1),
+                            ),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ))),
+                        child: Container(
+                            padding: const EdgeInsets.all(10),
+                            width: MediaQuery.of(context).size.width * 0.24,
+                            child: Text(
+                              'FLAG',
+                              style: GoogleFonts.montserrat(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600),
+                              textAlign: TextAlign.center,
+                            )),
+                      ),
+                    )
+                  else
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            _flags -= 1;
+                            _flaged = false;
+                          });
+                        },
+                        style: ButtonStyle(
+                            backgroundColor:
+                                const MaterialStatePropertyAll<Color>(
+                              Color.fromRGBO(113, 113, 113, 1),
+                            ),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ))),
+                        child: Container(
+                            padding: const EdgeInsets.all(10),
+                            width: MediaQuery.of(context).size.width * 0.24,
+                            child: Text(
+                              'UNFLAG',
+                              style: GoogleFonts.montserrat(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600),
+                              textAlign: TextAlign.center,
+                            )),
+                      ),
+                    )
                 ],
               ),
               Container(
