@@ -28,6 +28,7 @@ class TranscationAdaptor extends PreferenceAdapter<List<dynamic>> {
     return preferences.setString(key, json.encode(value));
   }
 }
+
 class MemberAdaptor extends PreferenceAdapter<List<dynamic>> {
   @override
   getValue(SharedPreferences preferences, String key) {
@@ -50,6 +51,7 @@ class MemberAdaptor extends PreferenceAdapter<List<dynamic>> {
     return preferences.setString(key, json.encode(value));
   }
 }
+
 class AppSettings extends InheritedWidget {
   final Preference<List<dynamic>> transcations;
   final Preference<List<dynamic>> members;
@@ -65,8 +67,58 @@ class AppSettings extends InheritedWidget {
       required Widget child,
       required StreamingSharedPreferences preferences})
       : transcations = preferences.getCustomValue('transcations',
-            defaultValue: [], adapter: TranscationAdaptor()),
-         members=   preferences.getCustomValue('members',
+            defaultValue: [
+              {
+                "title": "Soft Drinks",
+                "uploader": "",
+                "vendor": "Monal Canteen",
+                "payMethod": "",
+                "debit": "5,500",
+                "gstNo": "",
+                "gstAmt": "",
+                "date": "02 Feb",
+                "flags": 12,
+                "img": "restaurant",
+              },
+              {
+                "title": "DJ Remaining",
+                "uploader": "",
+                "vendor": "Samiksha Bhagat",
+                "payMethod": "",
+                "debit": "30,000",
+                "gstNo": "",
+                "gstAmt": "",
+                "date": "01 Feb",
+                "flags": 3,
+                "img": "equalizer",
+              },
+              {
+                "title": "Decoration",
+                "uploader": "",
+                "vendor": "Kanika Traders",
+                "payMethod": "",
+                "debit": "12,500",
+                "gstNo": "",
+                "gstAmt": "",
+                "date": "27 Jan",
+                "flags": 0,
+                "img": "celebration",
+              },
+              // {
+              //   "title": "Snacks",
+              //   "uploader": "",
+              //   "vendor": "Tragopan",
+              //   "payMethod": "",
+              //   "debit": "6,700",
+              //   "gstNo": "",
+              //   "gstAmt": "",
+              //   "date": "25 Jan",
+              //   "flags": 17,
+              //   "img": "restaurant",
+              // }
+            ],
+            adapter: TranscationAdaptor()),
+        members = preferences.getCustomValue('members',
             defaultValue: [], adapter: MemberAdaptor()),
         super(child: child);
 
@@ -80,12 +132,13 @@ class AppSettings extends InheritedWidget {
       "debit": model.debit,
       "gstNo": model.gstNo,
       "gstAmt": model.gstAmt,
-      "bill":model.bill,
+      "bill": model.bill,
     };
 
     return transcations.setValue([...transcations.getValue(), m]);
   }
-    // add member
+
+  // add member
   Future<bool> addMember(Member member) {
     Map m = {
       "name": member.name,
