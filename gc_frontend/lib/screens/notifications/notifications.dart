@@ -40,8 +40,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
               },
               child: Card(
                 margin: EdgeInsets.only(
-                    left: MediaQuery.of(context).size.width * .1,
-                    right: MediaQuery.of(context).size.width * .1,
+                    left: MediaQuery.of(context).size.width * .05,
+                    right: MediaQuery.of(context).size.width * .05,
                     top: 15),
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(25)),
@@ -57,7 +57,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                           child: Image.network(
                               "https://s3-alpha-sig.figma.com/img/9f8c/36c2/03d37021fa0adf25cfd955d18c8d97a7?Expires=1676851200&Signature=IBspb5mW-Khb0VYJ~-~Rr0fiFC1yw~HTzIuezBKlVGpv-L6RJVy3bEJ7k8jv1eG0CuiTP4~ELJD5W4jfjdUMYgTBz-RP9aPDWJONHqUS-fDtAVyhcseiV5HE4d5sKbqmRlxMp06W5lcfbpZD46kYO4YSoVNhEbOYMK879qd1G6~wzRwQXJJbKiBp1z3GRDdO~A0tFYcCuNBVoHjEQcRllbH85074mw-MpE6Dhu8bvx~GcUXK73-cgRxKEj9WikZsJVlVa-qSbmWXDloeE51P0X7rNL-at~jzVO~K2IH-BWa6ONKYotqA8MOnaDdo7mHzYqVYrR7LV58noxqGo6I~VQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
                               // height: 200.0,
-                              width: MediaQuery.of(context).size.width * .8)),
+                              width: MediaQuery.of(context).size.width * .9)),
                       Container(
                           // height: MediaQuery.of(context).size.height * .6,
                           width: MediaQuery.of(context).size.height * .8,
@@ -85,7 +85,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                                   )),
                               Container(
                                 height: 80,
-                                width: MediaQuery.of(context).size.width * 0.6,
+                                width: MediaQuery.of(context).size.width * 0.7,
                                 margin: const EdgeInsets.only(top: 10),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(30.0),
@@ -204,7 +204,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                                                 color: const Color.fromRGBO(
                                                     112, 84, 255, 1),
                                                 fontSize: 13,
-                                                fontWeight: FontWeight.w700),
+                                                fontWeight: FontWeight.w500),
                                             textAlign: TextAlign.center,
                                           )),
                                     ),
@@ -241,7 +241,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                                             style: GoogleFonts.montserrat(
                                                 color: Colors.white,
                                                 fontSize: 13,
-                                                fontWeight: FontWeight.w700),
+                                                fontWeight: FontWeight.w500),
                                             textAlign: TextAlign.center,
                                           )),
                                     ),

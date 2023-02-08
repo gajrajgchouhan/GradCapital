@@ -81,6 +81,7 @@ flutter:
 
   assets:
     - assets/data/members.json
+    - assets/data/allmember.json
     - assets/data/ledgers.json
     - assets/data/spendings.json
     - assets/images/bill.jpg

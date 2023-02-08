@@ -86,10 +86,12 @@ class _LedgerPageState extends State<LedgerPage> {
             FutureBuilder(
               future: readJson('assets/data/ledgers.json'),
               builder: (context, snapshot) {
+               
                 if (!snapshot.hasData) {
                   return const CircularProgressIndicator();
                 }
                 var ledgers = snapshot.data as List;
+                //  print(ledgers);
                 return Column(
                     // mainAxisAlignment: MainAxisAlignment.start,
                     children: ledgers.map((ledger) {
