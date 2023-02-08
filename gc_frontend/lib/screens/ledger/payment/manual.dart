@@ -18,7 +18,7 @@ class _ManualEntryState extends State<ManualEntry> {
       uploader: '',
       vendor: '',
       payMethod: '',
-      debit: '',
+      debit: '500',
       gstNo: '',
       gstAmt: '');
 
@@ -330,6 +330,7 @@ class _ManualEntryState extends State<ManualEntry> {
                 Padding(
                     padding: const EdgeInsets.only(left: 25, top: 20),
                     child: TextFormField(
+                      enabled: false,
                       decoration: const InputDecoration(
                           border: UnderlineInputBorder(),
                           labelText: 'Amount (Incl. GST)',
@@ -409,11 +410,13 @@ class _ManualEntryState extends State<ManualEntry> {
                         );
                         _formKey.currentState?.save();
                         print("debugggggggg");
-                        AppSettings.of(context).addTranscation(model).then((value) {
+                        AppSettings.of(context)
+                            .addTranscation(model)
+                            .then((value) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Saved!')),
-                        );
-                         
+                            const SnackBar(content: Text('Saved!')),
+                          );
+
                           Navigator.pop(context);
                           Navigator.pop(context);
                         });
