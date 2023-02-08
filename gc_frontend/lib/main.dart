@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gc_frontend/AppSettings.dart';
+import 'package:gc_frontend/screens/account.dart';
 import 'package:gc_frontend/screens/ledger/ledgers.dart';
-// import 'package:gc_frontend/screens/authenticate/sign_up.dart';
-import 'package:gc_frontend/screens/authenticate/sign_in.dart';
+import 'package:gc_frontend/screens/account.dart';
 import 'package:gc_frontend/screens/notifications/notifications.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
   static final List<Widget> _widgetOptions = <Widget>[
     const NotificationsPage(),
     const LedgerPage(title: 'Ledger Groups'),
-    const SignIn()
+    const AccountPage()
   ];
 
   void _onItemTapped(int index) {

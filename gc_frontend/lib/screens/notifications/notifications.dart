@@ -24,6 +24,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
             borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
         child: SingleChildScrollView(
             child: Column(children: [
+             const SizedBox(height:20),
           Padding(
               padding: const EdgeInsets.all(10),
               child: Align(
@@ -31,8 +32,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                   child: Text("Notifications",
                       style: GoogleFonts.montserrat(
                         color: const Color.fromRGBO(54, 54, 54, 1),
-                        fontWeight: FontWeight.w700,
-                        fontSize: 32,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 25,
                       )))),
           // const SizedBox(height: 10),
           InkWell(
