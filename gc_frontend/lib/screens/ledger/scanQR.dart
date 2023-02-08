@@ -11,6 +11,8 @@ class ScanQRPage extends StatefulWidget {
 }
 
 class _ScanQRPageState extends State<ScanQRPage> {
+  double amount = 0;
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -18,6 +20,15 @@ class _ScanQRPageState extends State<ScanQRPage> {
         padding: const EdgeInsets.fromLTRB(5, 100, 5, 0),
         child: Column(
           children: [
+            TextField(
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Enter UPI ID',
+                ),
+                onChanged: (value) => setState(() {
+                      amount = double.parse(value);
+                    })),
             SizedBox(
               height: 100,
             ),
@@ -26,7 +37,10 @@ class _ScanQRPageState extends State<ScanQRPage> {
                 String codeSanner = await FlutterBarcodeScanner.scanBarcode(
                     '#ff6666', 'Cancel', true, ScanMode.QR);
                 print(codeSanner);
-                if (!await launchUrlString(codeSanner)) {
+                if (amount == 0) {
+                  throw Exception('Invalid Amount');
+                }
+                if (!await launchUrlString(codeSanner + "&amt=$amount")) {
                   throw Exception('Invalid UPI');
                 }
               },
