@@ -99,51 +99,51 @@ class Payment extends StatelessWidget {
                                                       179, 179, 179, 1))))
                                     ]),
                               ))),
-                      Card(
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                          ),
-                          elevation: 8,
-                          child: Container(
-                            padding: const EdgeInsets.all(20),
-                            child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                      padding: const EdgeInsets.all(4),
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          border: Border.all(
-                                            color: const Color.fromRGBO(
-                                                113, 113, 113, 1),
-                                            width: 2,
-                                          )),
-                                      child: const Icon(
-                                        Icons.qr_code_2,
-                                        color: Color.fromRGBO(113, 113, 113, 1),
-                                        size: 35.0,
-                                        weight: 10,
-                                      )),
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const ScanQRPage()));
-                                    },
-                                    child: Padding(
-                                        padding: const EdgeInsets.all(10),
-                                        child: Text("MOI QR\n Scanner",
-                                            style: GoogleFonts.montserrat(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w700,
+                      InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const ScanQRPage()));
+                          },
+                          child: Card(
+                              shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                              ),
+                              elevation: 8,
+                              child: Container(
+                                padding: const EdgeInsets.all(20),
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                          padding: const EdgeInsets.all(4),
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              border: Border.all(
                                                 color: const Color.fromRGBO(
-                                                    179, 179, 179, 1)))),
-                                  )
-                                ]),
-                          )),
+                                                    113, 113, 113, 1),
+                                                width: 2,
+                                              )),
+                                          child: const Icon(
+                                            Icons.qr_code_2,
+                                            color: Color.fromRGBO(
+                                                113, 113, 113, 1),
+                                            size: 35.0,
+                                            weight: 10,
+                                          )),
+                                      Padding(
+                                          padding: const EdgeInsets.all(10),
+                                          child: Text("MOI QR\n Scanner",
+                                              style: GoogleFonts.montserrat(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w700,
+                                                  color: const Color.fromRGBO(
+                                                      179, 179, 179, 1)))),
+                                    ]),
+                              ))),
                       Card(
                           shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(20)),
